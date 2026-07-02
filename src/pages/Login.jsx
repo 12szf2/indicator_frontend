@@ -161,7 +161,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email || !password) {
+    if (!isGoogleLoginAttempt && (!email || !password)) {
       dispatch(loginFailure("Email és jelszó megadása kötelező"));
       return;
     }
