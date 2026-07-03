@@ -260,6 +260,13 @@ export default function Palyazatok() {
         : customPalyazatName;
     if (!newPalyazatCategory || !nameToUse || !selectedSchool) return;
 
+    if (palyazatokData[newPalyazatCategory] && palyazatokData[newPalyazatCategory][nameToUse]) {
+      setSnackbarMessage("Ezzel a névvel már létezik pályázat ebben a kategóriában!");
+      setSnackbarSeverity("error");
+      setSnackbarOpen(true);
+      return;
+    }
+
     try {
       const availableYears = schoolYears
         .map((year) => parseInt(year.split("/")[0], 10))

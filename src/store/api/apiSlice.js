@@ -1536,9 +1536,9 @@ export const indicatorApi = createApi({
 
     // Pályázatok (Indicator 24)
     getPalyazatok: build.query({
-      query: ({ alapadatokId, tanev }) => `palyazatok/${alapadatokId}/${tanev || getCurrentSchoolYearStart()}`,
-      providesTags: (result, error, { alapadatokId, tanev }) => [
-        { type: "Palyazatok", id: `${alapadatokId}-${tanev || getCurrentSchoolYearStart()}` },
+      query: ({ alapadatokId }) => `palyazatok/alapadatok/${alapadatokId}`,
+      providesTags: (result, error, { alapadatokId }) => [
+        { type: "Palyazatok", id: alapadatokId },
         "Palyazatok"
       ],
     }),
