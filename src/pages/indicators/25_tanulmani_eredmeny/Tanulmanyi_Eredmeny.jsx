@@ -686,25 +686,27 @@ export default function TanulmanyiEredmeny() {
               color="primary"
               onClick={() => setHistoryOpen(true)}
               startIcon={<HistoryIcon />}
-              sx={{ ml: 2 }}
             >
               Előzmények
             </Button>
+            <ExportDOMTableToExcel
+              tableId=".MuiTable-root"
+              fileName="tanulmanyi_eredmeny_export"
+            />
           </Stack>
-        </Stack>
 
-        {!selectedSchool ? (
-          <Alert severity="info" sx={{ mb: 3 }}>
-            Kérjük, válasszon egy intézményt a fenti legördülő menüből az adatok
-            megtekintéséhez.
-          </Alert>
-        ) : institutionTypes.length === 0 ? (
-          <Alert severity="warning" sx={{ mb: 3 }}>
-            A kiválasztott intézményhez nem tartozik intézménytípus.
-          </Alert>
-        ) : (
-          evszamok.map((yearStr) => renderYearTable(yearStr))
-        )}
+          {!selectedSchool ? (
+            <Alert severity="info" sx={{ mb: 3 }}>
+              Kérjük, válasszon egy intézményt a fenti legördülő menüből az adatok
+              megtekintéséhez.
+            </Alert>
+          ) : institutionTypes.length === 0 ? (
+            <Alert severity="warning" sx={{ mb: 3 }}>
+              A kiválasztott intézményhez nem tartozik intézménytípus.
+            </Alert>
+          ) : (
+            evszamok.map((yearStr) => renderYearTable(yearStr))
+          )}
       </Box>
 
       <Snackbar

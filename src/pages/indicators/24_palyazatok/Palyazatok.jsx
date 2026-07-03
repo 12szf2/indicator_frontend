@@ -112,6 +112,7 @@ export default function Palyazatok() {
   const [palyazatokData, setPalyazatokData] = useState(createInitialData());
   const [historyOpen, setHistoryOpen] = useState(false);
   const [originalData, setOriginalData] = useState(createInitialData());
+  const [allIdsMap, setAllIdsMap] = useState({});
   const [eloiranyzatData, setEloiranyzatData] = useState({});
   const [originalEloiranyzatData, setOriginalEloiranyzatData] = useState({});
 
@@ -165,6 +166,7 @@ export default function Palyazatok() {
       const origData = createInitialData();
       const newEloiranyzat = {};
       const origEloiranyzat = {};
+      const idsMap = {};
 
       if (Array.isArray(palyazatokDbData)) {
         palyazatokDbData.forEach((item) => {
@@ -184,6 +186,11 @@ export default function Palyazatok() {
             origEloiranyzat[yearRange] = { ...dataObj };
             return;
           }
+
+          // Collect all IDs for this key (handles duplicates)
+          const mapKey = `${category}::${name}`;
+          if (!idsMap[mapKey]) idsMap[mapKey] = [];
+          if (item.id) idsMap[mapKey].push(item.id);
 
           if (!newData[category]) newData[category] = {};
           if (!newData[category][name]) {
@@ -216,6 +223,7 @@ export default function Palyazatok() {
 
       setPalyazatokData(newData);
       setOriginalData(origData);
+      setAllIdsMap(idsMap);
       setEloiranyzatData(newEloiranyzat);
       setOriginalEloiranyzatData(origEloiranyzat);
       setIsModified(false);
@@ -324,11 +332,10 @@ export default function Palyazatok() {
     const { category, name } = palyazatToDelete;
 
     try {
-      const promises = [];
-      schoolYears.forEach((year) => {
-        const id = originalData[category]?.[name]?.[year]?.id;
-        if (id) promises.push(deletePalyazatok(id).unwrap());
-      });
+      // Delete all IDs associated with this key (including duplicates)
+      const mapKey = `${category}::${name}`;
+      const idsToDelete = allIdsMap[mapKey] || [];
+      const promises = idsToDelete.map((id) => deletePalyazatok(id).unwrap());
       if (promises.length > 0) await Promise.all(promises);
 
       const updatedData = { ...palyazatokData };
@@ -338,6 +345,10 @@ export default function Palyazatok() {
       const updatedOriginal = { ...originalData };
       if (updatedOriginal[category]) delete updatedOriginal[category][name];
       setOriginalData(updatedOriginal);
+
+      const updatedIdsMap = { ...allIdsMap };
+      delete updatedIdsMap[mapKey];
+      setAllIdsMap(updatedIdsMap);
 
       setSnackbarMessage("Sikeresen törölve!");
       setSnackbarSeverity("success");
@@ -353,8 +364,8 @@ export default function Palyazatok() {
   }, [
     palyazatokData,
     originalData,
+    allIdsMap,
     deletePalyazatok,
-    schoolYears,
     palyazatToDelete,
   ]);
 

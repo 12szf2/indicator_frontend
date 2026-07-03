@@ -94,6 +94,7 @@ export default function SzakmaiEredmenyek() {
   const [competitionData, setCompetitionData] = useState(createInitialData());
   const [historyOpen, setHistoryOpen] = useState(false);
   const [originalData, setOriginalData] = useState(createInitialData());
+  const [allIdsMap, setAllIdsMap] = useState({});
   const [competitionCreatedAtMap, setCompetitionCreatedAtMap] = useState({});
   const [isModified, setIsModified] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -154,6 +155,7 @@ export default function SzakmaiEredmenyek() {
       const newCompData = createInitialData();
       const originalCompData = createInitialData();
       const createdAtMap = {};
+      const idsMap = {};
 
       if (Array.isArray(dbData)) {
         dbData.forEach((item) => {
@@ -164,6 +166,11 @@ export default function SzakmaiEredmenyek() {
           const competitionName = item.versenyNev?.nev || "Ismeretlen verseny";
           const competitionCreatedAt =
             item.versenyNev?.createAt || item.createAt || "";
+
+          // Collect all IDs for this key (handles duplicates)
+          const mapKey = `${categoryKey}::${competitionName}`;
+          if (!idsMap[mapKey]) idsMap[mapKey] = [];
+          if (item.id) idsMap[mapKey].push(item.id);
 
           if (!newCompData[categoryKey]) newCompData[categoryKey] = {};
           if (!newCompData[categoryKey][competitionName]) {
@@ -209,6 +216,7 @@ export default function SzakmaiEredmenyek() {
 
       setCompetitionData(newCompData);
       setOriginalData(originalCompData);
+      setAllIdsMap(idsMap);
       setCompetitionCreatedAtMap(createdAtMap);
       setIsModified(false);
     }
@@ -284,14 +292,10 @@ export default function SzakmaiEredmenyek() {
     const { category, competition } = competitionToDelete;
 
     try {
-      // Delete from backend if they have an ID
-      const promises = [];
-      schoolYears.forEach((year) => {
-        const id = originalData[category]?.[competition]?.[year]?.id;
-        if (id) {
-          promises.push(deleteVersenyek(id).unwrap());
-        }
-      });
+      // Delete all IDs associated with this key (including duplicates)
+      const mapKey = `${category}::${competition}`;
+      const idsToDelete = allIdsMap[mapKey] || [];
+      const promises = idsToDelete.map((id) => deleteVersenyek(id).unwrap());
       if (promises.length > 0) await Promise.all(promises);
 
       const updatedData = { ...competitionData };
@@ -310,6 +314,10 @@ export default function SzakmaiEredmenyek() {
       }
       setCompetitionCreatedAtMap(updatedCreatedAtMap);
 
+      const updatedIdsMap = { ...allIdsMap };
+      delete updatedIdsMap[mapKey];
+      setAllIdsMap(updatedIdsMap);
+
       setSnackbarMessage("Sikeresen törölve!");
       setSnackbarSeverity("success");
       setSnackbarOpen(true);
@@ -324,8 +332,8 @@ export default function SzakmaiEredmenyek() {
   }, [
     competitionData,
     originalData,
+    allIdsMap,
     deleteVersenyek,
-    schoolYears,
     competitionToDelete,
     competitionCreatedAtMap,
   ]);

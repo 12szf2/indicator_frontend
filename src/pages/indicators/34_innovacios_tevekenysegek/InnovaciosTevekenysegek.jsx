@@ -53,6 +53,7 @@ export default function InnovaciosTevekenysegek() {
   const [tableData, setTableData] = useState(createInitialData());
   const [historyOpen, setHistoryOpen] = useState(false);
   const [originalData, setOriginalData] = useState(createInitialData());
+  const [allIdsMap, setAllIdsMap] = useState({});
 
   const [isModified, setIsModified] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -99,11 +100,16 @@ export default function InnovaciosTevekenysegek() {
     if (dbData && !isFetching) {
       const newData = createInitialData();
       const origData = createInitialData();
+      const idsMap = {};
 
       if (Array.isArray(dbData)) {
         dbData.forEach((item) => {
           const name = item.tevekenyseg_neve || "Ismeretlen";
           const yearRange = `${item.tanev_kezdete}/${item.tanev_kezdete + 1}`;
+
+          // Collect all IDs for this key (handles duplicates)
+          if (!idsMap[name]) idsMap[name] = [];
+          if (item.id) idsMap[name].push(item.id);
 
           if (!newData[name]) {
             newData[name] = {};
@@ -126,6 +132,7 @@ export default function InnovaciosTevekenysegek() {
 
       setTableData(newData);
       setOriginalData(origData);
+      setAllIdsMap(idsMap);
       setIsModified(false);
     }
   }, [dbData, isFetching, schoolYears]);
@@ -187,11 +194,9 @@ export default function InnovaciosTevekenysegek() {
     if (!itemToDelete) return;
 
     try {
-      const promises = [];
-      schoolYears.forEach((year) => {
-        const id = originalData[itemToDelete]?.[year]?.id;
-        if (id) promises.push(deleteData(id).unwrap());
-      });
+      // Delete all IDs associated with this key (including duplicates)
+      const idsToDelete = allIdsMap[itemToDelete] || [];
+      const promises = idsToDelete.map((id) => deleteData(id).unwrap());
       if (promises.length > 0) await Promise.all(promises);
 
       const updatedData = { ...tableData };
@@ -201,6 +206,10 @@ export default function InnovaciosTevekenysegek() {
       const updatedOriginal = { ...originalData };
       delete updatedOriginal[itemToDelete];
       setOriginalData(updatedOriginal);
+
+      const updatedIdsMap = { ...allIdsMap };
+      delete updatedIdsMap[itemToDelete];
+      setAllIdsMap(updatedIdsMap);
 
       setSnackbarMessage("Sikeresen törölve!");
       setSnackbarSeverity("success");
@@ -213,7 +222,7 @@ export default function InnovaciosTevekenysegek() {
       setSnackbarSeverity("error");
       setSnackbarOpen(true);
     }
-  }, [tableData, originalData, deleteData, schoolYears, itemToDelete]);
+  }, [tableData, originalData, allIdsMap, deleteData, itemToDelete]);
 
   const isFieldModified = (name, year) => {
     const orig = originalData[name]?.[year]?.jo_gyakorlatok || "";

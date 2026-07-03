@@ -440,7 +440,7 @@ export default function SzakmaiTovabbkepzesek() {
               ...evszamok.map((yr) => ({ header: yr, key: yr, width: 15 })),
             ]}
             rows={exportRows}
-            buttonLabel="Export"
+            buttonLabel="Export Táblázatba"
           />
         </Stack>
 
