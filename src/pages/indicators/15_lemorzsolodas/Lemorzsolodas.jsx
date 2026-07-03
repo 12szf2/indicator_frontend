@@ -356,6 +356,7 @@ export default function Lemorzsolodas() {
 
             <Card
               sx={{
+                position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px 8px 8px 8px",
                 mb: 3,
                 p: 2,
                 display: "flex",
@@ -651,7 +652,7 @@ export default function Lemorzsolodas() {
                                     size="small"
                                     type="number"
                                     value={examData[szakma.szakma_id]?.[year]
-                                        ?.lemorzsolodo || 0}
+                                      ?.lemorzsolodo || 0}
                                     onChange={(e) =>
                                       handleDataChange(
                                         szakma.szakma_id,
@@ -671,7 +672,7 @@ export default function Lemorzsolodas() {
                                       width: "70px",
                                       backgroundColor: "#fff3e0",
                                     }}
-                                   placeholder="0"/>
+                                    placeholder="0" />
                                 </TableCell>
                               );
                             })}
@@ -688,7 +689,7 @@ export default function Lemorzsolodas() {
                                     size="small"
                                     type="number"
                                     value={examData[szakma.szakma_id]?.[year]
-                                        ?.oktober || 0}
+                                      ?.oktober || 0}
                                     onChange={(e) =>
                                       handleDataChange(
                                         szakma.szakma_id,
@@ -708,7 +709,7 @@ export default function Lemorzsolodas() {
                                       width: "70px",
                                       backgroundColor: "#f0f8ff",
                                     }}
-                                   placeholder="0"/>
+                                    placeholder="0" />
                                 </TableCell>
                               );
                             })}

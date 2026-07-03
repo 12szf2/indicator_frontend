@@ -668,12 +668,7 @@ export default function HatanyosHelyzetuTanulokAranya() {
                       sx={{
                         mt: 3,
                         mb: 2,
-                        position: "sticky",
-                        top: 2,
-                        p: 2,
-                        zIndex: 10,
-                        backgroundColor: "white",
-                        py: 1,
+                        position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px 8px 8px 8px",
                       }}
                     >
                       <ExportDOMTableToExcel
@@ -2006,7 +2001,7 @@ export default function HatanyosHelyzetuTanulokAranya() {
                                   </Typography>
                                 </Box>
                                 {stats.lowest.year &&
-                                stats.lowest.percentage < 100 ? (
+                                  stats.lowest.percentage < 100 ? (
                                   <>
                                     <Typography
                                       variant="h4"

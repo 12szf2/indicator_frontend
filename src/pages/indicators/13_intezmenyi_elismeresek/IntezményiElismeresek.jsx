@@ -486,7 +486,7 @@ export default function IntézményiElismeresek() {
               >
                 Intézmény által elnyert díjak, elismerések
               </Typography>
-              <Stack direction="row" spacing={1} flexWrap="wrap">
+              <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px 8px 8px 8px", }}>
                 <LockedTableWrapper tableName="intezmenyi_nevelesi_mutatok">
                   <Button
                     variant="outlined"
@@ -739,7 +739,7 @@ export default function IntézményiElismeresek() {
                 Munkavállalók által elnyert díjak, elismerések, kitüntetésre
                 való felterjesztések
               </Typography>
-              <Stack direction="row" spacing={1} flexWrap="wrap">
+              <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px 8px 8px 8px", }}>
                 <LockedTableWrapper tableName="intezmenyi_nevelesi_mutatok">
                   <Button
                     variant="contained"

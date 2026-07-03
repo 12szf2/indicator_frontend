@@ -622,7 +622,7 @@ export default function Palyazatok() {
           </Alert>
         )}
 
-        <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
+        <Stack direction="row" spacing={2} sx={{ position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px 8px 8px 8px", mb: 3 }}>
           <LockedTableWrapper tableName="palyazatok">
             <Button
               variant="outlined"
@@ -745,7 +745,7 @@ export default function Palyazatok() {
                           borderBottom: "2px solid #e0e0e0",
                           borderRight:
                             j === metrics.length - 1 &&
-                            i !== schoolYears.length - 1
+                              i !== schoolYears.length - 1
                               ? "2px solid #e0e0e0"
                               : "1px solid #e0e0e0",
                           minWidth: 90,
@@ -811,7 +811,7 @@ export default function Palyazatok() {
                                 borderBottom: "1px solid #e0e0e0",
                                 borderRight:
                                   j === metrics.length - 1 &&
-                                  i !== schoolYears.length - 1
+                                    i !== schoolYears.length - 1
                                     ? "2px solid #e0e0e0"
                                     : "1px solid #f5f5f5",
                                 backgroundColor: isFieldModified(
@@ -844,7 +844,7 @@ export default function Palyazatok() {
                                   style: { textAlign: "center" },
                                 }}
                                 sx={{ width: isMoney ? "110px" : "70px" }}
-                               placeholder="0"/>
+                                placeholder="0" />
                             </TableCell>
                           );
                         }),
@@ -898,7 +898,7 @@ export default function Palyazatok() {
                           fontWeight: "bold",
                           borderRight:
                             j === metrics.length - 1 &&
-                            i !== schoolYears.length - 1
+                              i !== schoolYears.length - 1
                               ? "2px solid #e0e0e0"
                               : "1px solid #e0e0e0",
                         }}
@@ -963,7 +963,7 @@ export default function Palyazatok() {
                           style: { textAlign: "center", fontWeight: "bold" },
                         }}
                         sx={{ width: "110px" }}
-                       placeholder="0"/>
+                        placeholder="0" />
                     </TableCell>
                     <TableCell
                       sx={{
@@ -1122,7 +1122,7 @@ export default function Palyazatok() {
                   label="Egyéni pályázat megnevezése"
                   value={customPalyazatName || 0}
                   onChange={(e) => setCustomPalyazatName(e.target.value)}
-                 placeholder="0"/>
+                  placeholder="0" />
               )}
             </Box>
           </DialogContent>

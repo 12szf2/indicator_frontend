@@ -508,7 +508,7 @@ export default function IntezményiNevelesiMutatok() {
         if (recordId) {
           payload.id = recordId;
         }
-        
+
         return payload;
       });
 
@@ -591,7 +591,7 @@ export default function IntezményiNevelesiMutatok() {
                 Az adatok sikeresen mentve!
               </Alert>
             )}
-            <Card sx={{ mb: 3, p: 2 }}>
+            <Card sx={{ position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px 8px 8px 8px", mb: 3, p: 2 }}>
               <ExportDOMTableToExcel
                 tableId=".MuiTable-root"
                 fileName="export_adatok"
@@ -777,7 +777,7 @@ export default function IntezményiNevelesiMutatok() {
                               }}
                               sx={{ width: "60px" }}
                               disabled={isSaving}
-                             placeholder="0"/>
+                              placeholder="0" />
                           </TableCell>
                           {categories.map((category) =>
                             category.subcategories.map((subcategory) => {
@@ -790,15 +790,15 @@ export default function IntezményiNevelesiMutatok() {
                                   <ZeroHidingTextField
                                     type="number"
                                     value={isTotalCell
-                                        ? String(
-                                          getCategoryTotal(
-                                            classRows[className],
-                                            category.name,
-                                          ),
-                                        )
-                                        : classRows[className]?.[
-                                        category.name
-                                        ]?.[subcategory] || 0}
+                                      ? String(
+                                        getCategoryTotal(
+                                          classRows[className],
+                                          category.name,
+                                        ),
+                                      )
+                                      : classRows[className]?.[
+                                      category.name
+                                      ]?.[subcategory] || 0}
                                     onChange={
                                       isTotalCell
                                         ? undefined
@@ -817,7 +817,7 @@ export default function IntezményiNevelesiMutatok() {
                                     }}
                                     sx={{ width: "60px" }}
                                     disabled={isSaving || isTotalCell}
-                                   placeholder="0"/>
+                                    placeholder="0" />
                                 </TableCell>
                               );
                             }),
@@ -852,7 +852,7 @@ export default function IntezményiNevelesiMutatok() {
                             }}
                             sx={{ width: "60px" }}
                             disabled
-                           placeholder="0"/>
+                            placeholder="0" />
                         </TableCell>
                         {categories.map((category) =>
                           category.subcategories.map((subcategory) => (
@@ -873,7 +873,7 @@ export default function IntezményiNevelesiMutatok() {
                                 }}
                                 sx={{ width: "60px" }}
                                 disabled
-                               placeholder="0"/>
+                                placeholder="0" />
                             </TableCell>
                           )),
                         )}

@@ -345,38 +345,47 @@ export default function NyelvvizsgakSzama() {
           </Alert>
         )}
 
-        <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
-            <Button
-              variant="outlined"
-              color="warning"
-              startIcon={<RefreshIcon />}
-              onClick={handleReset}
-              disabled={!isModified || isSaving}
-            >
-              Visszaállítás
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              startIcon={<SaveIcon />}
-              onClick={handleSave}
-              disabled={!isModified || isSaving || !selectedSchool}
-            >
-              Mentés
-            </Button>
-            <Button
-              variant="outlined"
-              color="primary"
-              onClick={() => setHistoryOpen(true)}
-              startIcon={<HistoryIcon />}
-            >
-              Előzmények
-            </Button>
+        <Box sx={{ position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px 8px 8px 8px", mb: 3 }}>
+          <Stack
+            direction="row"
+            spacing={2}
+            justifyContent="space-between"
+            alignItems="center"
+          >
             <ExportDOMTableToExcel
               tableId=".MuiTable-root"
               fileName="nyelvvizsgak_szama_export"
             />
-        </Stack>
+            <Stack direction="row" spacing={2}>
+              <Button
+                variant="outlined"
+                color="warning"
+                startIcon={<RefreshIcon />}
+                onClick={handleReset}
+                disabled={!isModified || isSaving}
+              >
+                Visszaállítás
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                startIcon={<SaveIcon />}
+                onClick={handleSave}
+                disabled={!isModified || isSaving || !selectedSchool}
+              >
+                Mentés
+              </Button>
+              <Button
+                variant="outlined"
+                color="primary"
+                onClick={() => setHistoryOpen(true)}
+                startIcon={<HistoryIcon />}
+              >
+                Előzmények
+              </Button>
+            </Stack>
+          </Stack>
+        </Box>
 
         {schoolYears.map((year) => {
           const shortYear = `${year.split("/")[0]}/${year.split("/")[1].slice(2)}`;
@@ -525,7 +534,7 @@ export default function NyelvvizsgakSzama() {
                           }}
                           disabled={!selectedSchool}
                           sx={getFieldSx(cls, year, "kozepfoku_angol")}
-                         placeholder="0"/>
+                          placeholder="0" />
                       </TableCell>
 
                       {/* Felsőfokú angol */}
@@ -549,7 +558,7 @@ export default function NyelvvizsgakSzama() {
                           }}
                           disabled={!selectedSchool}
                           sx={getFieldSx(cls, year, "felsofoku_angol")}
-                         placeholder="0"/>
+                          placeholder="0" />
                       </TableCell>
 
                       {/* Középfokú német */}
@@ -573,7 +582,7 @@ export default function NyelvvizsgakSzama() {
                           }}
                           disabled={!selectedSchool}
                           sx={getFieldSx(cls, year, "kozepfoku_nemet")}
-                         placeholder="0"/>
+                          placeholder="0" />
                       </TableCell>
 
                       {/* Felsőfokú német */}
@@ -597,7 +606,7 @@ export default function NyelvvizsgakSzama() {
                           }}
                           disabled={!selectedSchool}
                           sx={getFieldSx(cls, year, "felsofoku_nemet")}
-                         placeholder="0"/>
+                          placeholder="0" />
                       </TableCell>
 
                       {/* Egyéb nyelv megnevezés */}
@@ -618,7 +627,7 @@ export default function NyelvvizsgakSzama() {
                           disabled={!selectedSchool}
                           inputProps={{ style: { textAlign: "center" } }}
                           sx={getFieldSx(cls, year, "egyeb_nyelv")}
-                         placeholder="0"/>
+                          placeholder="0" />
                       </TableCell>
 
                       {/* Egyéb fő */}
@@ -642,7 +651,7 @@ export default function NyelvvizsgakSzama() {
                           }}
                           disabled={!selectedSchool}
                           sx={getFieldSx(cls, year, "egyeb_fo")}
-                         placeholder="0"/>
+                          placeholder="0" />
                       </TableCell>
 
                       {/* Row total */}

@@ -476,7 +476,7 @@ export default function TanulmanyiEredmeny() {
                         "kituno",
                       )}
                       inputProps={{ min: 0 }}
-                     placeholder="0"/>
+                      placeholder="0" />
                   </TableCell>
                   <TableCell sx={cellSx}>
                     <ZeroHidingTextField
@@ -508,7 +508,7 @@ export default function TanulmanyiEredmeny() {
                         "bukott",
                       )}
                       inputProps={{ min: 0 }}
-                     placeholder="0"/>
+                      placeholder="0" />
                   </TableCell>
 
                   {/* Semester 2 inputs */}
@@ -542,7 +542,7 @@ export default function TanulmanyiEredmeny() {
                         "kituno",
                       )}
                       inputProps={{ min: 0 }}
-                     placeholder="0"/>
+                      placeholder="0" />
                   </TableCell>
                   <TableCell sx={cellSx}>
                     <ZeroHidingTextField
@@ -574,7 +574,7 @@ export default function TanulmanyiEredmeny() {
                         "bukott",
                       )}
                       inputProps={{ min: 0 }}
-                     placeholder="0"/>
+                      placeholder="0" />
                   </TableCell>
                 </TableRow>
               ));
@@ -649,7 +649,20 @@ export default function TanulmanyiEredmeny() {
       infoContent={<InfoTanulmanyiEredmeny />}
     >
       <Box sx={{ p: 3 }}>
-        <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
+        <Stack
+          direction="row"
+          spacing={2}
+          justifyContent="space-between"
+          alignItems="center"
+          mb={3}
+        >
+          <Box sx={{ position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px 8px 8px 8px", }}>
+            <ExportDOMTableToExcel
+              tableId=".MuiTable-root"
+              fileName="tanulmanyi_eredmeny_export"
+            />
+          </Box>
+          <Stack direction="row" spacing={2}>
             <Button
               variant="outlined"
               color="warning"
@@ -680,20 +693,20 @@ export default function TanulmanyiEredmeny() {
               tableId=".MuiTable-root"
               fileName="tanulmanyi_eredmeny_export"
             />
-        </Stack>
+          </Stack>
 
-        {!selectedSchool ? (
-          <Alert severity="info" sx={{ mb: 3 }}>
-            Kérjük, válasszon egy intézményt a fenti legördülő menüből az adatok
-            megtekintéséhez.
-          </Alert>
-        ) : institutionTypes.length === 0 ? (
-          <Alert severity="warning" sx={{ mb: 3 }}>
-            A kiválasztott intézményhez nem tartozik intézménytípus.
-          </Alert>
-        ) : (
-          evszamok.map((yearStr) => renderYearTable(yearStr))
-        )}
+          {!selectedSchool ? (
+            <Alert severity="info" sx={{ mb: 3 }}>
+              Kérjük, válasszon egy intézményt a fenti legördülő menüből az adatok
+              megtekintéséhez.
+            </Alert>
+          ) : institutionTypes.length === 0 ? (
+            <Alert severity="warning" sx={{ mb: 3 }}>
+              A kiválasztott intézményhez nem tartozik intézménytípus.
+            </Alert>
+          ) : (
+            evszamok.map((yearStr) => renderYearTable(yearStr))
+          )}
       </Box>
 
       <Snackbar

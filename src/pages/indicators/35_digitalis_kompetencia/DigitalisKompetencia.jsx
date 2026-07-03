@@ -243,7 +243,7 @@ export default function DigitalisKompetencia() {
           </Alert>
         )}
 
-        <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
+        <Stack direction="row" spacing={2} sx={{ position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px 8px 8px 8px", mb: 3 }}>
           <LockedTableWrapper tableName="digitalis_kompetencia">
             <Button
               variant="contained"
@@ -360,7 +360,7 @@ export default function DigitalisKompetencia() {
                       size="small"
                       inputProps={{ style: { textAlign: "center" }, min: 0 }}
                       sx={{ width: "100px" }}
-                     placeholder="0"/>
+                      placeholder="0" />
                   </TableCell>
                 ))}
               </TableRow>
@@ -398,7 +398,7 @@ export default function DigitalisKompetencia() {
                       size="small"
                       inputProps={{ style: { textAlign: "center" }, min: 0 }}
                       sx={{ width: "100px" }}
-                     placeholder="0"/>
+                      placeholder="0" />
                   </TableCell>
                 ))}
               </TableRow>

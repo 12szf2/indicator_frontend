@@ -531,7 +531,7 @@ export default function EgyuttmukodesekSzama() {
           </Alert>
         )}
 
-        <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
+        <Stack direction="row" spacing={2} sx={{ position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px 8px 8px 8px", mb: 3 }}>
           <LockedTableWrapper tableName="egyuttmukudesek_szama">
             <Button
               variant="contained"
@@ -743,7 +743,7 @@ export default function EgyuttmukodesekSzama() {
                               placeholder="pl. közös képzés"
                               inputProps={{ style: { textAlign: "center" } }}
                               sx={{ width: "100%", maxWidth: "200px" }}
-                             placeholder="0"/>
+                              placeholder="0" />
                           </TableCell>
                           <TableCell
                             align="center"
@@ -774,7 +774,7 @@ export default function EgyuttmukodesekSzama() {
                               placeholder="pl. 9-10-11"
                               inputProps={{ style: { textAlign: "center" } }}
                               sx={{ width: "100%", maxWidth: "130px" }}
-                             placeholder="0"/>
+                              placeholder="0" />
                           </TableCell>
                           <TableCell
                             align="center"
@@ -796,7 +796,7 @@ export default function EgyuttmukodesekSzama() {
                             <ZeroHidingTextField
                               type="number"
                               value={table1Data[name][year]
-                                  ?.erintett_tanulok_szama || 0}
+                                ?.erintett_tanulok_szama || 0}
                               onChange={(e) =>
                                 handleTable1Change(
                                   name,
@@ -811,7 +811,7 @@ export default function EgyuttmukodesekSzama() {
                                 min: 0,
                               }}
                               sx={{ width: "90px" }}
-                             placeholder="0"/>
+                              placeholder="0" />
                           </TableCell>
                         </React.Fragment>
                       ))}
@@ -1010,7 +1010,7 @@ export default function EgyuttmukodesekSzama() {
                             <ZeroHidingTextField
                               type="number"
                               value={table2Data[name][year]
-                                  ?.felsooktataba_lepo_szama || 0}
+                                ?.felsooktataba_lepo_szama || 0}
                               onChange={(e) =>
                                 handleTable2Change(
                                   name,
@@ -1025,7 +1025,7 @@ export default function EgyuttmukodesekSzama() {
                                 min: 0,
                               }}
                               sx={{ width: "90px" }}
-                             placeholder="0"/>
+                              placeholder="0" />
                           </TableCell>
                           <TableCell
                             align="center"
@@ -1044,7 +1044,7 @@ export default function EgyuttmukodesekSzama() {
                             <ZeroHidingTextField
                               type="number"
                               value={table2Data[name][year]
-                                  ?.vegzos_technikumi_szama || 0}
+                                ?.vegzos_technikumi_szama || 0}
                               onChange={(e) =>
                                 handleTable2Change(
                                   name,
@@ -1059,7 +1059,7 @@ export default function EgyuttmukodesekSzama() {
                                 min: 0,
                               }}
                               sx={{ width: "90px" }}
-                             placeholder="0"/>
+                              placeholder="0" />
                           </TableCell>
                           <TableCell
                             align="center"
@@ -1093,7 +1093,7 @@ export default function EgyuttmukodesekSzama() {
                               placeholder="pl. 49%"
                               inputProps={{ style: { textAlign: "center" } }}
                               sx={{ width: "90px" }}
-                             placeholder="0"/>
+                              placeholder="0" />
                           </TableCell>
                         </React.Fragment>
                       ))}
@@ -1145,7 +1145,7 @@ export default function EgyuttmukodesekSzama() {
                 onChange={(e) => setNewRowName(e.target.value)}
                 placeholder="Pl. Neumann János Egyetem"
                 autoFocus
-               placeholder="0"/>
+                placeholder="0" />
             </Box>
           </DialogContent>
           <DialogActions sx={{ p: 2, pt: 0 }}>
