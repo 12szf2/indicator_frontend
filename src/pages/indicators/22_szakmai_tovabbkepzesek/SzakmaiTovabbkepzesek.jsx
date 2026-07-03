@@ -415,6 +415,15 @@ export default function SzakmaiTovabbkepzesek() {
             </Button>
             <Button
               variant="outlined"
+              color="primary"
+              onClick={() => setHistoryOpen(true)}
+              startIcon={<HistoryIcon />}
+              sx={{ ml: 2, mr: 2 }}
+            >
+              Előzmények
+            </Button>
+            <Button
+              variant="outlined"
               startIcon={<RestartAltIcon />}
               onClick={handleReset}
               disabled={!isModified || isSaving || !selectedSchool}
