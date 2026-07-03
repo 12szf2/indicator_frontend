@@ -31,6 +31,8 @@ import LockStatusIndicator from "../../../components/LockStatusIndicator";
 import LockedTableWrapper from "../../../components/LockedTableWrapper";
 import ExportToExcel from "../../../components/ExportToExcel";
 import ZeroHidingTextField from "../../../components/shared/ZeroHidingTextField";
+import HistoryDialog from "../../../components/HistoryDialog";
+import HistoryIcon from "@mui/icons-material/History";
 
 const evszamok = generateSchoolYears();
 
@@ -47,6 +49,7 @@ export default function SzakmaiTovabbkepzesek() {
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
   const [isSaving, setIsSaving] = useState(false);
+  const [historyOpen, setHistoryOpen] = useState(false);
 
   const [upsertSzakmaiTovabbkepzesek] =
     useUpsertSzakmaiTovabbkepzesekMutation();
@@ -692,6 +695,18 @@ export default function SzakmaiTovabbkepzesek() {
           </Table>
         </TableContainer>
       </Box>
+
+      <HistoryDialog
+        open={historyOpen}
+        onClose={() => setHistoryOpen(false)}
+        alapadatokId={selectedSchool?.id}
+        tableName="szakmai_tovabbkepzes"
+        onRollbackSuccess={() => {
+          setSnackbarMessage("Sikeres visszaállítás az előzményekből!");
+          setSnackbarSeverity("success");
+          setSnackbarOpen(true);
+        }}
+      />
 
       <Snackbar
         open={snackbarOpen}
