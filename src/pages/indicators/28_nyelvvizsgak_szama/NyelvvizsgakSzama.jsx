@@ -345,20 +345,7 @@ export default function NyelvvizsgakSzama() {
           </Alert>
         )}
 
-        <Stack
-          direction="row"
-          spacing={2}
-          justifyContent="space-between"
-          alignItems="center"
-          mb={3}
-        >
-          <Box>
-            <ExportDOMTableToExcel
-              tableId=".MuiTable-root"
-              fileName="nyelvvizsgak_szama_export"
-            />
-          </Box>
-          <Stack direction="row" spacing={2}>
+        <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
             <Button
               variant="outlined"
               color="warning"
@@ -382,11 +369,13 @@ export default function NyelvvizsgakSzama() {
               color="primary"
               onClick={() => setHistoryOpen(true)}
               startIcon={<HistoryIcon />}
-              sx={{ ml: 2 }}
             >
               Előzmények
             </Button>
-          </Stack>
+            <ExportDOMTableToExcel
+              tableId=".MuiTable-root"
+              fileName="nyelvvizsgak_szama_export"
+            />
         </Stack>
 
         {schoolYears.map((year) => {

@@ -398,7 +398,6 @@ export default function SzakmaiTovabbkepzesek() {
         <Stack
           direction="row"
           spacing={2}
-          justifyContent="flex-end"
           sx={{ mb: 2 }}
           flexWrap="wrap"
         >
@@ -431,7 +430,7 @@ export default function SzakmaiTovabbkepzesek() {
               ...evszamok.map((yr) => ({ header: yr, key: yr, width: 15 })),
             ]}
             rows={exportRows}
-            buttonLabel="Export"
+            buttonLabel="Export Táblázatba"
           />
         </Stack>
 
