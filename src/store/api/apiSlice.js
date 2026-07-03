@@ -637,7 +637,7 @@ export const indicatorApi = createApi({
     }),
     // Tanulmányi Eredmény (Academic Results - Indicator 25)
     getTanulmanyiEredmeny: build.query({
-      query: ({ alapadatok_id }) => `tanulmanyi_eredmeny/${alapadatok_id}`,
+      query: ({ alapadatok_id, tanev }) => `tanulmanyi_eredmeny/${alapadatok_id}/${tanev}`,
       providesTags: (result, error, { alapadatok_id }) => [
         { type: "TanulmanyiEredmeny", id: alapadatok_id },
         "TanulmanyiEredmeny",
