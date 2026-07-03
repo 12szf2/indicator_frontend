@@ -208,9 +208,8 @@ export default function EgyOktatoraJutoTanulo() {
       console.error("Error saving teacher ratio data:", error);
       setNotification({
         open: true,
-        message: `Hiba történt a mentés során: ${
-          error.data?.message || error.message
-        }`,
+        message: `Hiba történt a mentés során: ${error.data?.message || error.message
+          }`,
         severity: "error",
       });
     }
@@ -241,9 +240,8 @@ export default function EgyOktatoraJutoTanulo() {
       console.error("Error deleting teacher ratio data:", error);
       setNotification({
         open: true,
-        message: `Hiba történt a törlés során: ${
-          error.data?.message || error.message
-        }`,
+        message: `Hiba történt a törlés során: ${error.data?.message || error.message
+          }`,
         severity: "error",
       });
     }
@@ -309,9 +307,8 @@ export default function EgyOktatoraJutoTanulo() {
 
       setNotification({
         open: true,
-        message: `Új oktató/tanuló arány rekord sikeresen hozzáadva: ${
-          addDialog.newRecord.selectedSchool?.iskola_neve || "Ismeretlen iskola"
-        } - ${newRecord.tanev_kezdete}/${newRecord.tanev_kezdete + 1}`,
+        message: `Új oktató/tanuló arány rekord sikeresen hozzáadva: ${addDialog.newRecord.selectedSchool?.iskola_neve || "Ismeretlen iskola"
+          } - ${newRecord.tanev_kezdete}/${newRecord.tanev_kezdete + 1}`,
         severity: "success",
       });
 
@@ -320,9 +317,8 @@ export default function EgyOktatoraJutoTanulo() {
       console.error("Error adding new teacher ratio data:", error);
       setNotification({
         open: true,
-        message: `Hiba történt az új rekord hozzáadása során: ${
-          error.data?.message || error.message
-        }`,
+        message: `Hiba történt az új rekord hozzáadása során: ${error.data?.message || error.message
+          }`,
         severity: "error",
       });
     }
@@ -364,7 +360,7 @@ export default function EgyOktatoraJutoTanulo() {
       infoContent={<InfoEgyOktatoraJutoTanulo />}
     >
       <Box sx={{ p: 3 }}>
-        <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
+        <Stack direction="row" spacing={2} sx={{ position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px 8px 8px 8px", mb: 2 }}>
           <ExportDOMTableToExcel
             tableId=".MuiTable-root"
             fileName="egy_oktatora_juto_tanulo"
@@ -640,7 +636,7 @@ export default function EgyOktatoraJutoTanulo() {
                                             style: { textAlign: "center" },
                                           }}
                                           sx={{ width: "80px" }}
-                                         placeholder="0"/>
+                                          placeholder="0" />
                                       </TableCell>
                                       <TableCell
                                         align="center"
@@ -662,7 +658,7 @@ export default function EgyOktatoraJutoTanulo() {
                                             style: { textAlign: "center" },
                                           }}
                                           sx={{ width: "80px" }}
-                                         placeholder="0"/>
+                                          placeholder="0" />
                                       </TableCell>
                                       <TableCell
                                         align="center"
@@ -703,7 +699,7 @@ export default function EgyOktatoraJutoTanulo() {
                 )}
 
                 {/* Action Buttons */}
-                <Stack direction="row" spacing={2} sx={{ mt: 3 }}>
+                <Stack direction="row" spacing={2} sx={{ position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px 8px 8px 8px", mt: 3 }}>
                   <ExportDOMTableToExcel
                     tableId=".MuiTable-root"
                     fileName="export_adatok"
@@ -965,7 +961,7 @@ export default function EgyOktatoraJutoTanulo() {
                   }
                   inputProps={{ min: 0 }}
                   helperText="Az intézményben tanuló diákok száma"
-                 placeholder="0"/>
+                  placeholder="0" />
               </Grid>
 
               <Grid item xs={12} md={6}>
@@ -979,7 +975,7 @@ export default function EgyOktatoraJutoTanulo() {
                   }
                   inputProps={{ min: 0 }}
                   helperText="Az intézményben dolgozó oktatók száma"
-                 placeholder="0"/>
+                  placeholder="0" />
               </Grid>
 
               <Grid item xs={12}>
@@ -995,9 +991,9 @@ export default function EgyOktatoraJutoTanulo() {
                   <strong>Számított oktató-tanuló arány:</strong>{" "}
                   {addDialog.newRecord.oktatok_szama > 0
                     ? (
-                        addDialog.newRecord.tanulok_szama /
-                        addDialog.newRecord.oktatok_szama
-                      ).toFixed(2)
+                      addDialog.newRecord.tanulok_szama /
+                      addDialog.newRecord.oktatok_szama
+                    ).toFixed(2)
                     : 0}{" "}
                   tanuló/oktató
                 </Typography>

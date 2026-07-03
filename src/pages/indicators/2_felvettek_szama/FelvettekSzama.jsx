@@ -239,9 +239,9 @@ const FelvettekSzama = () => {
               const subTypes =
                 szakmaNevek.length > 0
                   ? [
-                      ...szakmaNevek,
-                      `Nincs meghatározva (${normalizedSzakiranyNev})`,
-                    ]
+                    ...szakmaNevek,
+                    `Nincs meghatározva (${normalizedSzakiranyNev})`,
+                  ]
                   : [`Nincs meghatározva (${normalizedSzakiranyNev})`];
 
               if (subTypes.length > 0) {
@@ -634,14 +634,12 @@ const FelvettekSzama = () => {
               await addAdmissionData(upsertData).unwrap();
               savedCount++;
               console.log(
-                `✅ Saved record for ${
-                  szakmaNev || "Nincs meghatározva"
+                `✅ Saved record for ${szakmaNev || "Nincs meghatározva"
                 } - ${szakiranyNev} - ${year}`,
               );
             } catch (recordError) {
               console.error(
-                `❌ Error saving record for ${
-                  szakmaNev || "Nincs meghatározva"
+                `❌ Error saving record for ${szakmaNev || "Nincs meghatározva"
                 } - ${szakiranyNev} - ${year}:`,
                 recordError,
               );
@@ -866,7 +864,7 @@ const FelvettekSzama = () => {
                 változtatásokat!
               </Alert>
             )}
-            <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
+            <Stack direction="row" spacing={2} sx={{ position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px 8px 8px 8px", mb: 3 }}>
               <ExportDOMTableToExcel
                 tableId=".MuiTable-root"
                 fileName="felvettek_szama"
@@ -1145,10 +1143,10 @@ const FelvettekSzama = () => {
                             const isReadOnly = isSummaryRow(subType);
                             const displayValue = isReadOnly
                               ? getCalculatedValue(
-                                  subType,
-                                  startYear,
-                                  "jelentkezok_szama_9",
-                                )
+                                subType,
+                                startYear,
+                                "jelentkezok_szama_9",
+                              )
                               : data?.jelentkezok_szama_9 || 0;
 
                             // Check if this specific cell has been modified by the user
@@ -1211,7 +1209,7 @@ const FelvettekSzama = () => {
                                       },
                                     },
                                   }}
-                                 placeholder="0"/>
+                                  placeholder="0" />
                               </TableCell>
                             );
                           })}
@@ -1225,10 +1223,10 @@ const FelvettekSzama = () => {
                             const isReadOnly = isSummaryRow(subType);
                             const displayValue = isReadOnly
                               ? getCalculatedValue(
-                                  subType,
-                                  startYear,
-                                  "felvettek_szama_9",
-                                )
+                                subType,
+                                startYear,
+                                "felvettek_szama_9",
+                              )
                               : data?.felvettek_szama_9 || 0;
 
                             // Check if this specific cell has been modified by the user
@@ -1291,7 +1289,7 @@ const FelvettekSzama = () => {
                                       },
                                     },
                                   }}
-                                 placeholder="0"/>
+                                  placeholder="0" />
                               </TableCell>
                             );
                           })}
@@ -1305,10 +1303,10 @@ const FelvettekSzama = () => {
                             const isReadOnly = isSummaryRow(subType);
                             const displayValue = isReadOnly
                               ? getCalculatedValue(
-                                  subType,
-                                  startYear,
-                                  "felvettek_letszam_9",
-                                )
+                                subType,
+                                startYear,
+                                "felvettek_letszam_9",
+                              )
                               : data?.felvettek_letszam_9 || 0;
 
                             // Check if this specific cell has been modified by the user
@@ -1371,7 +1369,7 @@ const FelvettekSzama = () => {
                                       },
                                     },
                                   }}
-                                 placeholder="0"/>
+                                  placeholder="0" />
                               </TableCell>
                             );
                           })}

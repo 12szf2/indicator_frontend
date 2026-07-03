@@ -348,12 +348,21 @@ export default function DataImport() {
             component="h1"
             gutterBottom
             align="center"
-            sx={{ mb: 4 }}
+            sx={{ mb: 4, fontWeight: "bold" }}
           >
             Adatok Feltöltése
           </Typography>
 
-          <Paper sx={{ width: "100%" }}>
+          <Paper
+            elevation={0}
+            sx={{
+              width: "100%",
+              borderRadius: 4,
+              boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.05)",
+              border: "1px solid rgba(0,0,0,0.03)",
+              overflow: "hidden"
+            }}
+          >
             <Tabs value={tabValue} onChange={handleTabChange}
               scrollButtons="auto"
               centered
@@ -399,7 +408,20 @@ export default function DataImport() {
                     />
                   </Typography>
                 </Box>
-                <Paper variant="outlined" sx={{ p: 3 }}>
+                <Paper
+                  elevation={0}
+                  sx={{
+                    p: 4,
+                    borderRadius: 4,
+                    boxShadow: "0 4px 20px 0 rgba(0,0,0,0.05)",
+                    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                    border: "1px solid rgba(0,0,0,0.03)",
+                    "&:hover": {
+                      transform: "translateY(-4px)",
+                      boxShadow: "0 12px 28px 0 rgba(0,0,0,0.08)",
+                    },
+                  }}
+                >
                   {tanugyiValidationError && (
                     <Alert severity="error" sx={{ mb: 3 }}>
                       <AlertTitle>Hibás fájltípus!</AlertTitle>
@@ -485,7 +507,20 @@ export default function DataImport() {
                     />
                   </Typography>
                 </Box>
-                <Paper variant="outlined" sx={{ p: 3 }}>
+                <Paper
+                  elevation={0}
+                  sx={{
+                    p: 4,
+                    borderRadius: 4,
+                    boxShadow: "0 4px 20px 0 rgba(0,0,0,0.05)",
+                    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                    border: "1px solid rgba(0,0,0,0.03)",
+                    "&:hover": {
+                      transform: "translateY(-4px)",
+                      boxShadow: "0 12px 28px 0 rgba(0,0,0,0.08)",
+                    },
+                  }}
+                >
                   {alkalmazottValidationError && (
                     <Alert severity="error" sx={{ mb: 3 }}>
                       <AlertTitle>Hibás fájltípus!</AlertTitle>
@@ -587,7 +622,20 @@ export default function DataImport() {
                     />
                   </Typography>
                 </Box>
-                <Paper variant="outlined" sx={{ p: 3 }}>
+                <Paper
+                  elevation={0}
+                  sx={{
+                    p: 4,
+                    borderRadius: 4,
+                    boxShadow: "0 4px 20px 0 rgba(0,0,0,0.05)",
+                    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                    border: "1px solid rgba(0,0,0,0.03)",
+                    "&:hover": {
+                      transform: "translateY(-4px)",
+                      boxShadow: "0 12px 28px 0 rgba(0,0,0,0.08)",
+                    },
+                  }}
+                >
                   {tanuloAdatszolgaltatasValidationError && (
                     <Alert severity="error" sx={{ mb: 3 }}>
                       <AlertTitle>Hibás fájltípus!</AlertTitle>
@@ -668,7 +716,20 @@ export default function DataImport() {
                     />
                   </Typography>
                 </Box>
-                <Paper variant="outlined" sx={{ p: 3 }}>
+                <Paper
+                  elevation={0}
+                  sx={{
+                    p: 4,
+                    borderRadius: 4,
+                    boxShadow: "0 4px 20px 0 rgba(0,0,0,0.05)",
+                    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                    border: "1px solid rgba(0,0,0,0.03)",
+                    "&:hover": {
+                      transform: "translateY(-4px)",
+                      boxShadow: "0 12px 28px 0 rgba(0,0,0,0.08)",
+                    },
+                  }}
+                >
                   {oktatoAdatszolgaltatasValidationError && (
                     <Alert severity="error" sx={{ mb: 3 }}>
                       <AlertTitle>Hibás fájltípus!</AlertTitle>

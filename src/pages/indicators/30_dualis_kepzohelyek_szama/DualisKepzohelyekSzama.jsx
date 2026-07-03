@@ -196,11 +196,11 @@ export default function DualisKepzohelyekSzama() {
     try {
       const promises = [];
       const itemsToRemove = dbData.filter(item => (item.kepzohely_neve || "Ismeretlen") === itemToDelete);
-      
+
       itemsToRemove.forEach(item => {
         if (item.id) promises.push(deleteData(item.id).unwrap());
       });
-      
+
       if (promises.length > 0) await Promise.all(promises);
 
       const updatedData = { ...tableData };
@@ -392,7 +392,7 @@ export default function DualisKepzohelyekSzama() {
           </Alert>
         )}
 
-        <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
+        <Stack direction="row" spacing={2} sx={{ position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px 8px 8px 8px", mb: 3 }}>
           <LockedTableWrapper tableName="dualis_kepzohelyek">
             <Button
               variant="outlined"
@@ -617,7 +617,7 @@ export default function DualisKepzohelyekSzama() {
                                 sx={{ width: "100%" }}
                                 multiline
                                 maxRows={3}
-                               placeholder="0"/>
+                                placeholder="0" />
                             </TableCell>
                             <TableCell
                               align="center"
@@ -648,7 +648,7 @@ export default function DualisKepzohelyekSzama() {
                                 placeholder="10"
                                 inputProps={{ style: { textAlign: "center" } }}
                                 sx={{ width: "100%" }}
-                               placeholder="0"/>
+                                placeholder="0" />
                             </TableCell>
                             <TableCell
                               align="center"
@@ -684,7 +684,7 @@ export default function DualisKepzohelyekSzama() {
                                 sx={{ width: "100%" }}
                                 multiline
                                 maxRows={3}
-                               placeholder="0"/>
+                                placeholder="0" />
                             </TableCell>
                           </React.Fragment>
                         );
@@ -736,7 +736,7 @@ export default function DualisKepzohelyekSzama() {
                 onChange={(e) => setNewActivityName(e.target.value)}
                 placeholder="Pl. metALCOM Távközlési..."
                 autoFocus
-               placeholder="0"/>
+                placeholder="0" />
             </Box>
           </DialogContent>
           <DialogActions sx={{ p: 2, pt: 0 }}>

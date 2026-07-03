@@ -458,7 +458,7 @@ export default function SzakmaiEredmenyek() {
           Object.keys(competitionData[category]).forEach((competition) => {
             sum += parseInt(
               competitionData[category][competition][year]?.[placement.key] ||
-                0,
+              0,
               10,
             );
           });
@@ -510,7 +510,7 @@ export default function SzakmaiEredmenyek() {
         )}
 
         {/* Add Competition Button */}
-        <Stack direction="row" spacing={2} sx={{ mt: 3, mb: 3 }}>
+        <Stack direction="row" spacing={2} sx={{ position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px 8px 8px 8px", mt: 3, mb: 3 }}>
           <LockedTableWrapper tableName="versenyek">
             <Button
               variant="outlined"
@@ -662,7 +662,7 @@ export default function SzakmaiEredmenyek() {
                           borderBottom: "2px solid #e0e0e0",
                           borderRight:
                             j === placementTypes.length - 1 &&
-                            i !== schoolYears.length - 1
+                              i !== schoolYears.length - 1
                               ? "2px solid #e0e0e0"
                               : "1px solid #e0e0e0",
                           minWidth: 90,
@@ -704,7 +704,7 @@ export default function SzakmaiEredmenyek() {
                             fontWeight: "bold",
                             borderRight:
                               j === placementTypes.length - 1 &&
-                              i !== schoolYears.length - 1
+                                i !== schoolYears.length - 1
                                 ? "2px solid #e0e0e0"
                                 : "1px solid #e0e0e0",
                           }}
@@ -776,8 +776,8 @@ export default function SzakmaiEredmenyek() {
                             <ZeroHidingTextField
                               type="number"
                               value={competitionData[category][competition][year]?.[
-                                  placement.key
-                                ] || 0}
+                                placement.key
+                              ] || 0}
                               onChange={(e) =>
                                 handleDataChange(
                                   category,
@@ -803,7 +803,7 @@ export default function SzakmaiEredmenyek() {
                                   ? "#fff9c4"
                                   : "inherit",
                               }}
-                             placeholder="0"/>
+                              placeholder="0" />
                           </TableCell>
                         )),
                       )}
@@ -908,7 +908,7 @@ export default function SzakmaiEredmenyek() {
                           style: { textAlign: "center" },
                         }}
                         sx={{ width: "90px" }}
-                       placeholder="0"/>
+                        placeholder="0" />
                     </TableCell>
                   );
                 })}
@@ -973,7 +973,7 @@ export default function SzakmaiEredmenyek() {
                   setNewCompetition({ ...newCompetition, name: e.target.value })
                 }
                 placeholder="pl. Új verseny neve"
-               placeholder="0"/>
+                placeholder="0" />
             </Stack>
           </DialogContent>
           <DialogActions>

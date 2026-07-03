@@ -290,7 +290,7 @@ export default function TanuloLetszam() {
         groupedByAgazat[programType].yearCounts[year]["Összesen"] =
           groupedByAgazat[programType].yearCounts[year]["Tanulói jogviszony"] +
           groupedByAgazat[programType].yearCounts[year][
-            "Felnőttképzési jogviszony"
+          "Felnőttképzési jogviszony"
           ];
       });
 
@@ -357,13 +357,13 @@ export default function TanuloLetszam() {
     // Find all szakirány categories that belong to this institution type
     const relevantSchools = selectedSchool
       ? schoolsData.filter(
-          (school) =>
-            school.id === selectedSchool.id &&
-            school.intezmeny_tipus === targetInstType,
-        )
+        (school) =>
+          school.id === selectedSchool.id &&
+          school.intezmeny_tipus === targetInstType,
+      )
       : schoolsData.filter(
-          (school) => school.intezmeny_tipus === targetInstType,
-        );
+        (school) => school.intezmeny_tipus === targetInstType,
+      );
 
     // Get all szakirány names that belong to this institution type
     const szakiranyNamesInInstType = new Set();
@@ -1047,7 +1047,7 @@ export default function TanuloLetszam() {
               <>
                 {" "}
                 {/* Action Buttons */}
-                <Stack direction="row" spacing={2} sx={{ mb: 3, ml: 2 }}>
+                <Stack direction="row" spacing={2} sx={{ position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px 8px 8px 8px", mb: 1 }}>
                   <LockedTableWrapper tableName="tanulo_letszam">
                     <Button
                       variant="contained"
@@ -1537,7 +1537,7 @@ export default function TanuloLetszam() {
                                             style: { textAlign: "center" },
                                           }}
                                           sx={{ width: "70px" }}
-                                         placeholder="0"/>
+                                          placeholder="0" />
                                       </TableCell>
                                     );
                                   })}
@@ -1572,7 +1572,7 @@ export default function TanuloLetszam() {
                                             style: { textAlign: "center" },
                                           }}
                                           sx={{ width: "70px" }}
-                                         placeholder="0"/>
+                                          placeholder="0" />
                                       </TableCell>
                                     );
                                   })}
@@ -1587,41 +1587,41 @@ export default function TanuloLetszam() {
                                 category.subTypes.length === 1 &&
                                 category.category === category.subTypes[0]
                               ) && (
-                                <TableRow>
-                                  <TableCell
-                                    sx={{
-                                      fontWeight: "bold",
-                                      backgroundColor: category.isTotal
-                                        ? "#e8f5e8"
-                                        : category.isInstitutionType
-                                          ? "#fff3e0"
-                                          : "#f0f8ff",
-                                      borderBottom: "2px solid #e0e0e0",
-                                      borderRight: "2px solid #e0e0e0",
-                                      position: "sticky",
-                                      left: 0,
-                                      zIndex: 2,
-                                    }}
-                                  >
-                                    {category.category}
-                                  </TableCell>
-                                  {/* Empty cells for years */}
-                                  {Array(evszamok.length * 3)
-                                    .fill(0)
-                                    .map((_, index) => (
-                                      <TableCell
-                                        key={index}
-                                        sx={{
-                                          backgroundColor: category.isTotal
-                                            ? "#e8f5e8"
-                                            : category.isInstitutionType
-                                              ? "#fff3e0"
-                                              : "#f0f8ff",
-                                        }}
-                                      />
-                                    ))}
-                                </TableRow>
-                              )}
+                                  <TableRow>
+                                    <TableCell
+                                      sx={{
+                                        fontWeight: "bold",
+                                        backgroundColor: category.isTotal
+                                          ? "#e8f5e8"
+                                          : category.isInstitutionType
+                                            ? "#fff3e0"
+                                            : "#f0f8ff",
+                                        borderBottom: "2px solid #e0e0e0",
+                                        borderRight: "2px solid #e0e0e0",
+                                        position: "sticky",
+                                        left: 0,
+                                        zIndex: 2,
+                                      }}
+                                    >
+                                      {category.category}
+                                    </TableCell>
+                                    {/* Empty cells for years */}
+                                    {Array(evszamok.length * 3)
+                                      .fill(0)
+                                      .map((_, index) => (
+                                        <TableCell
+                                          key={index}
+                                          sx={{
+                                            backgroundColor: category.isTotal
+                                              ? "#e8f5e8"
+                                              : category.isInstitutionType
+                                                ? "#fff3e0"
+                                                : "#f0f8ff",
+                                          }}
+                                        />
+                                      ))}
+                                  </TableRow>
+                                )}
 
                               {/* Sub-type rows */}
                               {category.subTypes.map((subType) => (
@@ -1638,7 +1638,7 @@ export default function TanuloLetszam() {
                                     sx={{
                                       fontWeight:
                                         category.isTotal &&
-                                        subType === "Összesen"
+                                          subType === "Összesen"
                                           ? "bold"
                                           : "medium",
                                       pl: category.isSpecialty ? 4 : 2,
@@ -1647,18 +1647,18 @@ export default function TanuloLetszam() {
                                       left: 0,
                                       backgroundColor:
                                         category.isTotal &&
-                                        subType === "Összesen"
+                                          subType === "Összesen"
                                           ? "#e8f5e8"
                                           : "#ffffff",
                                       zIndex: 1,
                                       borderTop:
                                         category.isTotal &&
-                                        subType === "Összesen"
+                                          subType === "Összesen"
                                           ? "2px solid #2e7d32"
                                           : "none",
                                       borderBottom:
                                         category.isTotal &&
-                                        subType === "Összesen"
+                                          subType === "Összesen"
                                           ? "2px solid #2e7d32"
                                           : "none",
                                     }}
@@ -1704,7 +1704,7 @@ export default function TanuloLetszam() {
                                         sx={{
                                           backgroundColor:
                                             category.isTotal &&
-                                            subType === "Összesen"
+                                              subType === "Összesen"
                                               ? "#e8f5e8"
                                               : "#ffcdd220",
                                           fontWeight: "bold",
@@ -1713,12 +1713,12 @@ export default function TanuloLetszam() {
                                             : "text.disabled",
                                           borderTop:
                                             category.isTotal &&
-                                            subType === "Összesen"
+                                              subType === "Összesen"
                                               ? "2px solid #2e7d32"
                                               : "none",
                                           borderBottom:
                                             category.isTotal &&
-                                            subType === "Összesen"
+                                              subType === "Összesen"
                                               ? "2px solid #2e7d32"
                                               : "none",
                                         }}
@@ -1812,7 +1812,7 @@ export default function TanuloLetszam() {
                                               style: { textAlign: "center" },
                                             }}
                                             sx={{ width: "70px" }}
-                                           placeholder="0"/>
+                                            placeholder="0" />
                                         </TableCell>
                                       );
                                     }
@@ -1902,7 +1902,7 @@ export default function TanuloLetszam() {
                                               style: { textAlign: "center" },
                                             }}
                                             sx={{ width: "70px" }}
-                                           placeholder="0"/>
+                                            placeholder="0" />
                                         </TableCell>
                                       );
                                     }

@@ -205,9 +205,9 @@ export default function SzakmaiBemutatokKonferenciak() {
       eventCategories.forEach((cat) => {
         if (
           eventData[cat.category].neve[year] !==
-            savedData[cat.category].neve[year] ||
+          savedData[cat.category].neve[year] ||
           eventData[cat.category].letszam[year] !==
-            savedData[cat.category].letszam[year]
+          savedData[cat.category].letszam[year]
         ) {
           yearChanged = true;
         }
@@ -295,7 +295,7 @@ export default function SzakmaiBemutatokKonferenciak() {
         />
 
         <Card
-          sx={{ mb: 3, p: 2, display: "flex", flexDirection: "row", gap: 2 }}
+          sx={{ position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px 8px 8px 8px", mb: 3, p: 2, display: "flex", flexDirection: "row", gap: 2 }}
         >
           <ExportDOMTableToExcel
             tableId=".MuiTable-root"
@@ -450,7 +450,7 @@ export default function SzakmaiBemutatokKonferenciak() {
                             fullWidth
                             placeholder="rendezvény neve kerül ide"
                             disabled={!selectedSchool}
-                           placeholder="0"/>
+                            placeholder="0" />
                         </TableCell>
                       ))}
                     </TableRow>
@@ -471,8 +471,8 @@ export default function SzakmaiBemutatokKonferenciak() {
                           <ZeroHidingTextField
                             type="number"
                             value={eventData[categoryData.category]?.letszam?.[
-                                year
-                              ] || 0}
+                              year
+                            ] || 0}
                             onChange={(e) =>
                               handleDataChange(
                                 categoryData.category,
@@ -490,7 +490,7 @@ export default function SzakmaiBemutatokKonferenciak() {
                             sx={{ width: "80px" }}
                             placeholder="létszám"
                             disabled={!selectedSchool}
-                           placeholder="0"/>
+                            placeholder="0" />
                         </TableCell>
                       ))}
                     </TableRow>
