@@ -652,48 +652,38 @@ export default function TanulmanyiEredmeny() {
         <Stack
           direction="row"
           spacing={2}
-          justifyContent="space-between"
-          alignItems="center"
-          mb={3}
+          sx={{ position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px", mb: 3 }}
         >
-          <Box sx={{ position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px 8px 8px 8px", }}>
-            <ExportDOMTableToExcel
-              tableId=".MuiTable-root"
-              fileName="tanulmanyi_eredmeny_export"
-            />
-          </Box>
-          <Stack direction="row" spacing={2}>
-            <Button
-              variant="outlined"
-              color="warning"
-              startIcon={<RestartAltIcon />}
-              onClick={handleReset}
-              disabled={!isModified || isSaving}
-            >
-              Visszaállítás
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              startIcon={<SaveIcon />}
-              onClick={handleSaveData}
-              disabled={!isModified || isSaving}
-            >
-              Mentés
-            </Button>
-            <Button
-              variant="outlined"
-              color="primary"
-              onClick={() => setHistoryOpen(true)}
-              startIcon={<HistoryIcon />}
-            >
-              Előzmények
-            </Button>
-            <ExportDOMTableToExcel
-              tableId=".MuiTable-root"
-              fileName="tanulmanyi_eredmeny_export"
-            />
-          </Stack>
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={<SaveIcon />}
+            onClick={handleSaveData}
+            disabled={!isModified || isSaving}
+          >
+            Mentés
+          </Button>
+          <Button
+            variant="outlined"
+            color="info"
+            onClick={() => setHistoryOpen(true)}
+            startIcon={<HistoryIcon />}
+          >
+            Előzmények
+          </Button>
+          <Button
+            variant="outlined"
+            startIcon={<RestartAltIcon />}
+            onClick={handleReset}
+            disabled={!isModified || isSaving}
+          >
+            Visszaállítás
+          </Button>
+          <ExportDOMTableToExcel
+            tableId=".MuiTable-root"
+            fileName="tanulmanyi_eredmeny_export"
+          />
+        </Stack>
 
           {!selectedSchool ? (
             <Alert severity="info" sx={{ mb: 3 }}>
