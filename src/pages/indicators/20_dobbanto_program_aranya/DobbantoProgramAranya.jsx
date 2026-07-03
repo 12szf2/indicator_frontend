@@ -464,10 +464,9 @@ export default function DobbantoProgramAránya() {
                     </Button>
                     <Button
                       variant="outlined"
-                      color="primary"
+                      color="info"
                       onClick={() => setHistoryOpen(true)}
                       startIcon={<HistoryIcon />}
-                      sx={{ ml: 2 }}
                     >
                       Előzmények
                     </Button>
