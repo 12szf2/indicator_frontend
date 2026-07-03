@@ -2340,9 +2340,7 @@ export default function HatanyosHelyzetuTanulokAranya() {
           alapadatokId={selectedSchool?.id}
           tableName="hHEsHHHTanulok"
           onRollbackSuccess={() => {
-            setSnackbarMessage("Sikeres visszaállítás az előzményekből!");
-            setSnackbarSeverity("success");
-            setSnackbarOpen(true);
+            showNotification("Sikeres visszaállítás az előzményekből!", "success");
           }}
         />
       </PageWrapper>
