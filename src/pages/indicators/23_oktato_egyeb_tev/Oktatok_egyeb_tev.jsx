@@ -299,9 +299,7 @@ export default function OktatokEgyebTev() {
   useEffect(() => {
     if (
       apiData &&
-      Array.isArray(apiData) &&
-      apiData.length > 0 &&
-      !isDataInitialized
+      Array.isArray(apiData)
     ) {
       // Use API data if available
       const frontendData = {};
@@ -358,8 +356,7 @@ export default function OktatokEgyebTev() {
       setIsDataInitialized(true);
     }
   }, [
-    apiData,
-    isDataInitialized,
+    JSON.stringify(apiData),
     alkalmazottQuery1.data,
     alkalmazottQuery2.data,
     alkalmazottQuery3.data,
@@ -1139,9 +1136,11 @@ export default function OktatokEgyebTev() {
           alapadatokId={selectedSchool?.id}
           tableName="oktatoEgyebTev"
           onRollbackSuccess={() => {
-            setSnackbarMessage("Sikeres visszaállítás az előzményekből!");
-            setSnackbarSeverity("success");
-            setSnackbarOpen(true);
+            setNotification({
+              open: true,
+              message: "Sikeres visszaállítás az előzményekből!",
+              severity: "success",
+            });
           }}
         />
       </PageWrapper>

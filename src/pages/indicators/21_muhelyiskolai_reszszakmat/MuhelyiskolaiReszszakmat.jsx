@@ -28,7 +28,7 @@ import {
   useGetTanuloLetszamQuery,
   useAddMuhelyiskolaMutation,
   useUpdateMuhelyiskolaMutation,
-  useLazyGetMuhelyiskolaQuery,
+  useGetMuhelyiskolaQuery,
 } from "../../../store/api/apiSlice";
 import {
   TableLoadingOverlay,
@@ -55,27 +55,29 @@ export default function MuhelyiskolaiReszszakmat() {
       { skip: !selectedSchool?.id }, // Skip the query if no school is selected
     );
 
-  const [triggerGetWorkshop] = useLazyGetMuhelyiskolaQuery();
-  const [existingWorkshopData, setExistingWorkshopData] = useState([]);
-  const [isWorkshopFetching, setIsWorkshopFetching] = useState(false);
+  // Fetch existing workshop data from API for all years
+  const workshopQueries = schoolYears.map((yearRange) => {
+    const startYear = parseInt(yearRange.split("/")[0]);
+    return useGetMuhelyiskolaQuery(
+      {
+        alapadatok_id: selectedSchool?.id,
+        tanev: startYear,
+      },
+      { skip: !selectedSchool?.id },
+    );
+  });
 
-  useEffect(() => {
-    if (selectedSchool?.id) {
-      setIsWorkshopFetching(true);
-      Promise.all(
-        schoolYears.map((yearRange) => {
-          const startYear = parseInt(yearRange.split("/")[0]);
-          return triggerGetWorkshop({
-            alapadatok_id: selectedSchool.id,
-            tanev: startYear,
-          }).unwrap().catch(() => []);
-        })
-      ).then((results) => {
-        setExistingWorkshopData(results.flat());
-        setIsWorkshopFetching(false);
-      });
-    }
-  }, [selectedSchool?.id, schoolYears.join(",")]);
+  // Memoize combined workshop data and loading states to prevent infinite loops
+  const existingWorkshopData = useMemo(() => {
+    return workshopQueries.flatMap((query) => query.data || []);
+  }, [
+    workshopQueries.map((q) => JSON.stringify(q.data)).join(","),
+    selectedSchool?.id,
+  ]);
+
+  const isWorkshopFetching = useMemo(() => {
+    return workshopQueries.some((query) => query.isLoading || query.isFetching);
+  }, [workshopQueries.map((q) => q.isLoading || q.isFetching).join(",")]);
 
   // Mutations for saving workshop data
   const [addWorkshop, { isLoading: isAdding, error: addError }] =
@@ -169,10 +171,15 @@ export default function MuhelyiskolaiReszszakmat() {
 
   // Load existing workshop data from API when available
   useEffect(() => {
-    if (existingWorkshopData && existingWorkshopData.length > 0) {
+    if (existingWorkshopData) {
       console.log("Loading existing workshop data:", existingWorkshopData);
 
       const participantsCountData = {};
+
+      // Initialize all years to 0 first
+      schoolYears.forEach((year) => {
+        participantsCountData[year] = "0";
+      });
 
       // Process existing workshop data
       existingWorkshopData.forEach((record) => {
@@ -195,9 +202,11 @@ export default function MuhelyiskolaiReszszakmat() {
         percentage_overall: prev?.percentage_overall || {},
       }));
 
+      setIsModified(false);
+
       console.log("Loaded workshop participants data:", participantsCountData);
     }
-  }, [existingWorkshopData.length, selectedSchool?.id]);
+  }, [existingWorkshopData, selectedSchool?.id]);
 
   // Handle data changes - only participants_count is editable
   const handleDataChange = (section, year, value) => {
@@ -557,9 +566,8 @@ export default function MuhelyiskolaiReszszakmat() {
                                       },
                                     },
                                   }}
-                                  placeholder="0-100"
                                   disabled // Auto-calculated field
-                                 placeholder="0"/>
+                                  placeholder="0" />
                                 {isOverLimit && (
                                   <Typography
                                     variant="caption"
