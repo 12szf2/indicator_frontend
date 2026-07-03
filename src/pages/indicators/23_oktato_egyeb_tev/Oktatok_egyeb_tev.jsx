@@ -346,8 +346,8 @@ export default function OktatokEgyebTev() {
             oktatokLetszamaFromAlkalmazott > 0
               ? oktatokLetszamaFromAlkalmazott.toString()
               : (
-                  record?.oktatok_letszama || record?.oktatokLetszama
-                )?.toString() || "",
+                record?.oktatok_letszama || record?.oktatokLetszama
+              )?.toString() || "",
           _recordId: record?.id,
         };
       });
@@ -423,7 +423,7 @@ export default function OktatokEgyebTev() {
         if (
           oktatokLetszamaFromAlkalmazott > 0 &&
           updatedData[year]?.oktatok_letszama !==
-            oktatokLetszamaFromAlkalmazott.toString()
+          oktatokLetszamaFromAlkalmazott.toString()
         ) {
           updatedData[year] = {
             ...updatedData[year],
@@ -674,8 +674,8 @@ export default function OktatokEgyebTev() {
             oktatokLetszamaFromAlkalmazott > 0
               ? oktatokLetszamaFromAlkalmazott.toString()
               : (
-                  record?.oktatok_letszama || record?.oktatokLetszama
-                )?.toString() || "",
+                record?.oktatok_letszama || record?.oktatokLetszama
+              )?.toString() || "",
           _recordId: record?.id,
         };
       });
@@ -754,7 +754,7 @@ export default function OktatokEgyebTev() {
                 </Typography>
 
                 {/* Action buttons */}
-                <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
+                <Stack direction="row" spacing={2} sx={{ position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px 8px 8px 8px", mb: 3 }}>
                   <ExportDOMTableToExcel
                     tableId=".MuiTable-root"
                     fileName="export_adatok"
@@ -838,7 +838,7 @@ export default function OktatokEgyebTev() {
                             ([categoryKey, categoryLabel]) => {
                               const isObjectCategory =
                                 typeof data[schoolYears[0]]?.[categoryKey] ===
-                                  "object" &&
+                                "object" &&
                                 data[schoolYears[0]]?.[categoryKey] !== null;
 
                               if (isObjectCategory) {
@@ -863,7 +863,7 @@ export default function OktatokEgyebTev() {
                                     .filter(([fieldKey]) =>
                                       Object.prototype.hasOwnProperty.call(
                                         data[schoolYears[0]]?.[categoryKey] ||
-                                          {},
+                                        {},
                                         fieldKey,
                                       ),
                                     )
@@ -880,8 +880,8 @@ export default function OktatokEgyebTev() {
                                               size="small"
                                               type="number"
                                               value={data[year]?.[categoryKey]?.[
-                                                  fieldKey
-                                                ] || 0}
+                                                fieldKey
+                                              ] || 0}
                                               onChange={(e) =>
                                                 handleInputChange(
                                                   categoryKey,
@@ -906,7 +906,7 @@ export default function OktatokEgyebTev() {
                                                   ? "2px solid #ffb74d"
                                                   : "1px solid transparent",
                                               }}
-                                             placeholder="0"/>
+                                              placeholder="0" />
                                           </TableCell>
                                         ))}
                                       </TableRow>
@@ -974,7 +974,7 @@ export default function OktatokEgyebTev() {
                                               ? "2px solid #ffb74d"
                                               : "1px solid transparent",
                                           }}
-                                         placeholder="0"/>
+                                          placeholder="0" />
                                       </TableCell>
                                     ))}
                                   </TableRow>
@@ -1070,15 +1070,15 @@ export default function OktatokEgyebTev() {
                                         },
                                         border:
                                           !isReadOnly &&
-                                          isCellModified(
-                                            "oktatok_letszama",
-                                            null,
-                                            year,
-                                          )
+                                            isCellModified(
+                                              "oktatok_letszama",
+                                              null,
+                                              year,
+                                            )
                                             ? "2px solid #ffb74d"
                                             : "1px solid transparent",
                                       }}
-                                     placeholder="0"/>
+                                      placeholder="0" />
                                   );
                                 })()}
                               </TableCell>

@@ -934,8 +934,20 @@ export default function Dashboard() {
           {/* Services Overview */}
           <Grid container spacing={3} sx={{ mb: 4 }}>
             <Grid item xs={12} md={4}>
-              <Card>
-                <CardContent>
+              <Card
+                sx={{
+                  height: "100%",
+                  borderRadius: 4,
+                  boxShadow: "0 4px 20px 0 rgba(0,0,0,0.05)",
+                  transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                  border: "1px solid rgba(0,0,0,0.03)",
+                  "&:hover": {
+                    transform: "translateY(-4px)",
+                    boxShadow: "0 12px 28px 0 rgba(0,0,0,0.08)",
+                  },
+                }}
+              >
+                <CardContent sx={{ p: 3 }}>
                   <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
                     <CheckCircleIcon sx={{ mr: 1, color: "success.main" }} />
                     <Typography variant="h6">Backend Szolgáltatások</Typography>
@@ -1007,8 +1019,20 @@ export default function Dashboard() {
             </Grid>
 
             <Grid item xs={12} md={4}>
-              <Card>
-                <CardContent>
+              <Card
+                sx={{
+                  height: "100%",
+                  borderRadius: 4,
+                  boxShadow: "0 4px 20px 0 rgba(0,0,0,0.05)",
+                  transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                  border: "1px solid rgba(0,0,0,0.03)",
+                  "&:hover": {
+                    transform: "translateY(-4px)",
+                    boxShadow: "0 12px 28px 0 rgba(0,0,0,0.08)",
+                  },
+                }}
+              >
+                <CardContent sx={{ p: 3 }}>
                   <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
                     <TimerIcon sx={{ mr: 1, color: "info.main" }} />
                     <Typography variant="h6">Gateway</Typography>
@@ -1034,8 +1058,20 @@ export default function Dashboard() {
             </Grid>
 
             <Grid item xs={12} md={4}>
-              <Card>
-                <CardContent>
+              <Card
+                sx={{
+                  height: "100%",
+                  borderRadius: 4,
+                  boxShadow: "0 4px 20px 0 rgba(0,0,0,0.05)",
+                  transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                  border: "1px solid rgba(0,0,0,0.03)",
+                  "&:hover": {
+                    transform: "translateY(-4px)",
+                    boxShadow: "0 12px 28px 0 rgba(0,0,0,0.08)",
+                  },
+                }}
+              >
+                <CardContent sx={{ p: 3 }}>
                   <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
                     <StorageIcon sx={{ mr: 1, color: "primary.main" }} />
                     <Typography variant="h6">Adatbázis</Typography>
@@ -1130,17 +1166,27 @@ export default function Dashboard() {
                   <Grid item xs={12} md={6} key={serviceName}>
                     <Card
                       sx={{
+                        height: "100%",
+                        borderRadius: 4,
+                        boxShadow: "0 4px 20px 0 rgba(0,0,0,0.05)",
+                        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
                         border:
                           serviceData.status !== "healthy"
                             ? "2px solid"
-                            : "none",
+                            : "1px solid rgba(0,0,0,0.03)",
                         borderColor:
                           serviceData.status === "unhealthy"
                             ? "error.main"
-                            : "inherit",
+                            : serviceData.status !== "healthy"
+                              ? "warning.main"
+                              : "rgba(0,0,0,0.03)",
+                        "&:hover": {
+                          transform: "translateY(-4px)",
+                          boxShadow: "0 12px 28px 0 rgba(0,0,0,0.08)",
+                        },
                       }}
                     >
-                      <CardContent>
+                      <CardContent sx={{ p: 3 }}>
                         <Box
                           sx={{
                             display: "flex",
@@ -1348,8 +1394,20 @@ export default function Dashboard() {
       {/* Recent Activity / Instructions */}
       <Grid container spacing={3} sx={{ mb: 4 }}>
         <Grid item xs={12} md={6}>
-          <Card>
-            <CardContent>
+          <Card
+            sx={{
+              height: "100%",
+              borderRadius: 4,
+              boxShadow: "0 4px 20px 0 rgba(0,0,0,0.05)",
+              transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+              border: "1px solid rgba(0,0,0,0.03)",
+              "&:hover": {
+                transform: "translateY(-4px)",
+                boxShadow: "0 12px 28px 0 rgba(0,0,0,0.08)",
+              },
+            }}
+          >
+            <CardContent sx={{ p: 3 }}>
               <Typography variant="h6" gutterBottom>
                 Használati útmutató
               </Typography>
@@ -1398,8 +1456,20 @@ export default function Dashboard() {
         </Grid>
 
         <Grid item xs={12} md={6}>
-          <Card>
-            <CardContent>
+          <Card
+            sx={{
+              height: "100%",
+              borderRadius: 4,
+              boxShadow: "0 4px 20px 0 rgba(0,0,0,0.05)",
+              transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+              border: "1px solid rgba(0,0,0,0.03)",
+              "&:hover": {
+                transform: "translateY(-4px)",
+                boxShadow: "0 12px 28px 0 rgba(0,0,0,0.08)",
+              },
+            }}
+          >
+            <CardContent sx={{ p: 3 }}>
               <Typography variant="h6" gutterBottom>
                 Jogosultságok
               </Typography>
@@ -1459,8 +1529,15 @@ export default function Dashboard() {
 
       {/* Debug Panel Section - Only for privileged users */}
       {(isSuperadmin || isAdmin) && (
-        <Card sx={{ mb: 3 }}>
-          <CardContent>
+        <Card
+          sx={{
+            mb: 3,
+            borderRadius: 4,
+            boxShadow: "0 4px 20px 0 rgba(0,0,0,0.05)",
+            border: "1px solid rgba(0,0,0,0.03)",
+          }}
+        >
+          <CardContent sx={{ p: 3 }}>
             <Box
               sx={{
                 display: "flex",
@@ -1475,8 +1552,7 @@ export default function Dashboard() {
                   <Switch
                     checked={showDebugPanels}
                     onChange={(e) => setShowDebugPanels(e.target.checked)}
-                    icon={<VisibilityOffIcon />}
-                    checkedIcon={<VisibilityIcon />}
+                    color="primary"
                   />
                 }
                 label={

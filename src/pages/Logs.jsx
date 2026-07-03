@@ -245,158 +245,121 @@ export default function Logs() {
       return "N/A";
     };
 
+    const CodeBlock = ({ title, data, color = "#d4d4d4", isError = false }) => (
+      <Box mb={3}>
+        <Typography variant="subtitle2" gutterBottom sx={{ fontWeight: 'bold', color: isError ? 'error.main' : 'text.primary', display: 'flex', alignItems: 'center', gap: 1 }}>
+          {title}
+        </Typography>
+        <Box
+          sx={{
+            backgroundColor: isError ? "#fff0f0" : "#1e1e1e",
+            color: isError ? "#d32f2f" : color,
+            p: 2,
+            borderRadius: 2,
+            overflowX: "auto",
+            maxHeight: "300px",
+            boxShadow: "inset 0 2px 4px rgba(0,0,0,0.1)",
+            fontFamily: "monospace",
+            fontSize: "0.8rem",
+            '&::-webkit-scrollbar': { height: 8, width: 8 },
+            '&::-webkit-scrollbar-thumb': { backgroundColor: isError ? '#ffb3b3' : '#555', borderRadius: 4 },
+            '&::-webkit-scrollbar-track': { backgroundColor: isError ? '#ffe6e6' : '#2d2d2d', borderRadius: 4 },
+          }}
+        >
+          <pre style={{ margin: 0 }}>
+            {typeof data === "string" ? data : JSON.stringify(data, null, 2)}
+          </pre>
+        </Box>
+      </Box>
+    );
+
+    const DetailItem = ({ label, value }) => (
+      <Box sx={{ display: 'flex', py: 1.5, borderBottom: '1px dashed rgba(0,0,0,0.08)', '&:last-child': { borderBottom: 'none' } }}>
+        <Typography variant="body2" sx={{ fontWeight: 600, minWidth: '140px', color: 'text.secondary' }}>
+          {label}
+        </Typography>
+        <Box sx={{ flex: 1, wordBreak: 'break-word' }}>
+          {typeof value === 'string' ? (
+            <Typography variant="body2">{value}</Typography>
+          ) : (
+            value
+          )}
+        </Box>
+      </Box>
+    );
+
     return (
-      <Box sx={{ p: 2, bgcolor: "grey.50", borderRadius: 1 }}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
-            <Typography variant="subtitle2" gutterBottom>
-              Kérés részletei
+      <Box sx={{ p: { xs: 2, md: 4 }, bgcolor: "#fafafa", borderRadius: 3, m: 2, boxShadow: "inset 0 2px 10px rgba(0,0,0,0.05)", border: "1px solid rgba(0,0,0,0.05)" }}>
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={5}>
+            <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold', mb: 3, color: 'primary.main' }}>
+               Általános információk
             </Typography>
-            <Typography variant="body2">
-              <strong>Útvonal:</strong> {log.path || "N/A"}
-            </Typography>
-            <Typography variant="body2">
-              <strong>IP cím:</strong> {getIpAddress()}
-            </Typography>
-            <Typography variant="body2">
-              <strong>User Agent:</strong> {getUserAgent()}
-            </Typography>
-            <Typography variant="body2">
-              <strong>Host:</strong> {log.headers?.host || "N/A"}
-            </Typography>
-            {log.headers?.referer && (
-              <Typography variant="body2">
-                <strong>Referer:</strong> {log.headers.referer}
-              </Typography>
-            )}
-            {log.headers?.origin && (
-              <Typography variant="body2">
-                <strong>Origin:</strong> {log.headers.origin}
-              </Typography>
-            )}
-            {log.user && (
-              <Typography variant="body2">
-                <strong>Felhasználó:</strong> {log.user.name} ({log.user.email})
-              </Typography>
-            )}
-            {log.duration && (
-              <Typography variant="body2">
-                <strong>Időtartam:</strong> {log.duration}ms
-              </Typography>
-            )}
-            {log.statusCode && (
-              <Typography variant="body2">
-                <strong>Státusz kód:</strong> {log.statusCode}
-              </Typography>
-            )}
-            {log.correlationId && (
-              <Typography variant="body2">
-                <strong>Korrelációs ID:</strong> {log.correlationId}
-              </Typography>
-            )}
-            {log.message && (
-              <Typography variant="body2">
-                <strong>Üzenet:</strong> {log.message}
-              </Typography>
-            )}
-          </Grid>
-          <Grid item xs={12} md={6}>
-            {log.query &&
-              typeof log.query === "object" &&
-              Object.keys(log.query).length > 0 && (
-                <Box mb={2}>
-                  <Typography variant="subtitle2" gutterBottom>
-                    Query paraméterek
-                  </Typography>
-                  <pre
-                    style={{
-                      fontSize: "0.75rem",
-                      margin: 0,
-                      maxHeight: "200px",
-                      overflow: "auto",
-                    }}
-                  >
-                    {JSON.stringify(log.query, null, 2)}
-                  </pre>
-                </Box>
+            
+            <Box sx={{ bgcolor: 'white', p: 2.5, borderRadius: 3, boxShadow: '0 4px 12px rgba(0,0,0,0.02)', border: '1px solid rgba(0,0,0,0.04)' }}>
+              <DetailItem label="Útvonal" value={<Chip size="small" label={log.path || "N/A"} sx={{ fontFamily: 'monospace' }} />} />
+              <DetailItem label="IP cím" value={getIpAddress()} />
+              <DetailItem label="User Agent" value={getUserAgent()} />
+              <DetailItem label="Host" value={log.headers?.host || "N/A"} />
+              
+              {log.headers?.referer && <DetailItem label="Referer" value={log.headers.referer} />}
+              {log.headers?.origin && <DetailItem label="Origin" value={log.headers.origin} />}
+              
+              {log.user && (
+                <DetailItem label="Felhasználó" value={
+                  <Box>
+                    <Typography variant="body2" sx={{ fontWeight: 'bold' }}>{log.user.name}</Typography>
+                    <Typography variant="caption" color="text.secondary">{log.user.email}</Typography>
+                  </Box>
+                } />
               )}
-            {log.body &&
-              typeof log.body === "object" &&
-              Object.keys(log.body).length > 0 && (
-                <Box mb={2}>
-                  <Typography variant="subtitle2" gutterBottom>
-                    Kérés törzs
-                  </Typography>
-                  <pre
-                    style={{
-                      fontSize: "0.75rem",
-                      margin: 0,
-                      maxHeight: "200px",
-                      overflow: "auto",
-                    }}
-                  >
-                    {JSON.stringify(log.body, null, 2)}
-                  </pre>
-                </Box>
+              
+              {log.duration && (
+                <DetailItem label="Időtartam" value={
+                  <Chip size="small" label={`${log.duration} ms`} color={log.duration > 1000 ? "warning" : "success"} variant={log.duration > 1000 ? "filled" : "outlined"} />
+                } />
               )}
-            {log.headers &&
-              typeof log.headers === "object" &&
-              Object.keys(log.headers).length > 0 && (
-                <Box mb={2}>
-                  <Typography variant="subtitle2" gutterBottom>
-                    Fejlécek
-                  </Typography>
-                  <pre
-                    style={{
-                      fontSize: "0.75rem",
-                      margin: 0,
-                      maxHeight: "200px",
-                      overflow: "auto",
-                    }}
-                  >
-                    {JSON.stringify(log.headers, null, 2)}
-                  </pre>
-                </Box>
+              
+              {log.statusCode && (
+                <DetailItem label="Státusz kód" value={
+                  <Chip size="small" label={log.statusCode} color={log.statusCode >= 400 ? "error" : "success"} />
+                } />
               )}
-            {log.error && (
-              <Box mb={2}>
-                <Typography variant="subtitle2" gutterBottom>
-                  Hiba részletei
-                </Typography>
-                <pre
-                  style={{
-                    fontSize: "0.75rem",
-                    margin: 0,
-                    maxHeight: "200px",
-                    overflow: "auto",
-                    color: "red",
-                  }}
-                >
-                  {typeof log.error === "string"
-                    ? log.error
-                    : JSON.stringify(log.error, null, 2)}
-                </pre>
-              </Box>
-            )}
-            {/* Debug: Show all available log properties */}
-            <Box mb={2}>
-              <Typography variant="subtitle2" gutterBottom>
-                Összes elérhető adat (debug)
-              </Typography>
-              <pre
-                style={{
-                  fontSize: "0.65rem",
-                  margin: 0,
-                  maxHeight: "300px",
-                  overflow: "auto",
-                  background: "#f5f5f5",
-                  padding: "8px",
-                  borderRadius: "4px",
-                }}
-              >
-                {JSON.stringify(log, null, 2)}
-              </pre>
+              
+              {log.correlationId && <DetailItem label="Korrelációs ID" value={<Typography variant="caption" sx={{ fontFamily: 'monospace', bgcolor: 'rgba(0,0,0,0.05)', p: 0.5, borderRadius: 1 }}>{log.correlationId}</Typography>} />}
+              {log.message && <DetailItem label="Üzenet" value={log.message} />}
             </Box>
+          </Grid>
+          
+          <Grid item xs={12} md={7}>
+            <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold', mb: 3, color: 'primary.main' }}>
+               Adatok & Fejlécek
+            </Typography>
+            
+            {log.query && typeof log.query === "object" && Object.keys(log.query).length > 0 && (
+              <CodeBlock title="Query paraméterek" data={log.query} color="#9cdcfe" />
+            )}
+            
+            {log.body && typeof log.body === "object" && Object.keys(log.body).length > 0 && (
+              <CodeBlock title="Kérés törzs (Body)" data={log.body} color="#ce9178" />
+            )}
+            
+            {log.headers && typeof log.headers === "object" && Object.keys(log.headers).length > 0 && (
+              <CodeBlock title="Fejlécek (Headers)" data={log.headers} color="#4ec9b0" />
+            )}
+            
+            {log.error && (
+              <CodeBlock title="Hiba részletei" data={log.error} isError={true} />
+            )}
+            
+            <details style={{ marginTop: '24px', cursor: 'pointer' }}>
+              <summary style={{ fontWeight: 'bold', color: '#666', marginBottom: '12px', outline: 'none' }}>
+                Fejlesztői nézet (Összes elérhető adat)
+              </summary>
+              <Box mt={2}>
+                <CodeBlock title="Raw JSON" data={log} color="#d4d4d4" />
+              </Box>
+            </details>
           </Grid>
         </Grid>
       </Box>
@@ -404,8 +367,18 @@ export default function Logs() {
   };
 
   return (
-    <Box p={1}>
-      <Typography variant="h4" gutterBottom>
+    <Box sx={{ p: { xs: 2, md: 4 } }}>
+      <Typography 
+        variant="h4" 
+        gutterBottom
+        sx={{
+          fontWeight: 800,
+          background: "linear-gradient(45deg, #1976d2, #9c27b0)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          mb: 1
+        }}
+      >
         Rendszer Naplók
       </Typography>
 
@@ -416,7 +389,7 @@ export default function Logs() {
       </Typography>
 
       {/* Filter Section */}
-      <Card sx={{ mb: 3 }}>
+      <Card sx={{ mb: 4, borderRadius: 3, boxShadow: "0 4px 20px 0 rgba(0,0,0,0.05)", border: "1px solid rgba(0,0,0,0.08)" }}>
         <CardContent>
           <Box
             display="flex"
@@ -549,7 +522,7 @@ export default function Logs() {
       </Card>
 
         {/* Log Deletion Section */}
-        <Card sx={{ mb: 3 }}>
+        <Card sx={{ mb: 4, borderRadius: 3, boxShadow: "0 4px 20px 0 rgba(0,0,0,0.05)", border: "1px solid rgba(0,0,0,0.08)" }}>
           <CardContent>
             <Box
               display="flex"
@@ -632,7 +605,7 @@ export default function Logs() {
         </Card>
 
       {/* Logs Table */}
-      <Paper>
+      <Paper sx={{ borderRadius: 3, boxShadow: "0 4px 20px 0 rgba(0,0,0,0.05)", overflow: "hidden", border: "1px solid rgba(0,0,0,0.08)" }}>
         {error && (
           <Alert severity="error" sx={{ mb: 2 }}>
             Hiba történt a naplók betöltése során:{" "}
@@ -642,7 +615,7 @@ export default function Logs() {
 
         <TableContainer>
           <Table>
-            <TableHead>
+            <TableHead sx={{ backgroundColor: "rgba(0,0,0,0.02)" }}>
               <TableRow>
                 <TableCell />
                 <TableCell>Időpont</TableCell>

@@ -216,15 +216,15 @@ export default function PalyaOrientacio() {
     try {
       const promises = [];
       const [delCategory, delName] = itemToDelete.split("::");
-      const itemsToRemove = dbData.filter(item => 
-        (item.kategoria || CATEGORIES[0]) === delCategory && 
+      const itemsToRemove = dbData.filter(item =>
+        (item.kategoria || CATEGORIES[0]) === delCategory &&
         (item.tevekenyseg_neve || "Ismeretlen") === delName
       );
-      
+
       itemsToRemove.forEach(item => {
         if (item.id) promises.push(deleteData(item.id).unwrap());
       });
-      
+
       if (promises.length > 0) await Promise.all(promises);
 
       const updatedData = { ...tableData };
@@ -392,7 +392,7 @@ export default function PalyaOrientacio() {
           </Alert>
         )}
 
-        <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
+        <Stack direction="row" spacing={2} sx={{ position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px 8px 8px 8px", mb: 3 }}>
           <LockedTableWrapper tableName="palya_orientacio">
             <Button
               variant="outlined"
@@ -610,7 +610,7 @@ export default function PalyaOrientacio() {
                               placeholder="pl. 100"
                               inputProps={{ style: { textAlign: "center" } }}
                               sx={{ width: "100%", maxWidth: "120px" }}
-                             placeholder="0"/>
+                              placeholder="0" />
                           </TableCell>
                         );
                       })}
@@ -677,7 +677,7 @@ export default function PalyaOrientacio() {
                 onChange={(e) => setNewActivityName(e.target.value)}
                 placeholder="Pl. SkillFest"
                 multiline
-               placeholder="0"/>
+                placeholder="0" />
             </Box>
           </DialogContent>
           <DialogActions sx={{ p: 2, pt: 0 }}>

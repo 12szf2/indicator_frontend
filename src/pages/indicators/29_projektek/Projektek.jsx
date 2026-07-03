@@ -356,7 +356,7 @@ export default function Projektek() {
           spacing={2}
           alignItems="center"
           mb={3}
-        >
+          sx={{ position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px 8px 8px 8px", }}>
           <ExportDOMTableToExcel
             tableId=".MuiTable-root"
             fileName="projektek_export"
@@ -511,7 +511,7 @@ export default function Projektek() {
                                   transition: "background-color 0.3s ease",
                                 },
                               }}
-                             placeholder="0"/>
+                              placeholder="0" />
                           </TableCell>
                           <TableCell sx={{ borderBottom: "1px solid #f5f5f5" }}>
                             <ZeroHidingTextField
@@ -540,7 +540,7 @@ export default function Projektek() {
                                   transition: "background-color 0.3s ease",
                                 },
                               }}
-                             placeholder="0"/>
+                              placeholder="0" />
                           </TableCell>
                           <TableCell sx={{ borderBottom: "1px solid #f5f5f5" }}>
                             <ZeroHidingTextField
@@ -568,7 +568,7 @@ export default function Projektek() {
                                   transition: "background-color 0.3s ease",
                                 },
                               }}
-                             placeholder="0"/>
+                              placeholder="0" />
                           </TableCell>
                           <TableCell sx={{ borderBottom: "1px solid #f5f5f5" }}>
                             <ZeroHidingTextField
@@ -597,7 +597,7 @@ export default function Projektek() {
                                   transition: "background-color 0.3s ease",
                                 },
                               }}
-                             placeholder="0"/>
+                              placeholder="0" />
                           </TableCell>
                           <TableCell
                             align="center"

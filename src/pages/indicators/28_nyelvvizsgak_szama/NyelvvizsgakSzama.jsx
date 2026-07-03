@@ -352,7 +352,7 @@ export default function NyelvvizsgakSzama() {
           alignItems="center"
           mb={3}
         >
-          <Box>
+          <Box sx={{ position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px 8px 8px 8px", }}>
             <ExportDOMTableToExcel
               tableId=".MuiTable-root"
               fileName="nyelvvizsgak_szama_export"
@@ -536,7 +536,7 @@ export default function NyelvvizsgakSzama() {
                           }}
                           disabled={!selectedSchool}
                           sx={getFieldSx(cls, year, "kozepfoku_angol")}
-                         placeholder="0"/>
+                          placeholder="0" />
                       </TableCell>
 
                       {/* Felsőfokú angol */}
@@ -560,7 +560,7 @@ export default function NyelvvizsgakSzama() {
                           }}
                           disabled={!selectedSchool}
                           sx={getFieldSx(cls, year, "felsofoku_angol")}
-                         placeholder="0"/>
+                          placeholder="0" />
                       </TableCell>
 
                       {/* Középfokú német */}
@@ -584,7 +584,7 @@ export default function NyelvvizsgakSzama() {
                           }}
                           disabled={!selectedSchool}
                           sx={getFieldSx(cls, year, "kozepfoku_nemet")}
-                         placeholder="0"/>
+                          placeholder="0" />
                       </TableCell>
 
                       {/* Felsőfokú német */}
@@ -608,7 +608,7 @@ export default function NyelvvizsgakSzama() {
                           }}
                           disabled={!selectedSchool}
                           sx={getFieldSx(cls, year, "felsofoku_nemet")}
-                         placeholder="0"/>
+                          placeholder="0" />
                       </TableCell>
 
                       {/* Egyéb nyelv megnevezés */}
@@ -629,7 +629,7 @@ export default function NyelvvizsgakSzama() {
                           disabled={!selectedSchool}
                           inputProps={{ style: { textAlign: "center" } }}
                           sx={getFieldSx(cls, year, "egyeb_nyelv")}
-                         placeholder="0"/>
+                          placeholder="0" />
                       </TableCell>
 
                       {/* Egyéb fő */}
@@ -653,7 +653,7 @@ export default function NyelvvizsgakSzama() {
                           }}
                           disabled={!selectedSchool}
                           sx={getFieldSx(cls, year, "egyeb_fo")}
-                         placeholder="0"/>
+                          placeholder="0" />
                       </TableCell>
 
                       {/* Row total */}

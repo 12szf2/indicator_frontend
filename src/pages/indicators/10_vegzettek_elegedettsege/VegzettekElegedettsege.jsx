@@ -191,7 +191,7 @@ export default function VegzettekElegedettsege() {
 
     // Allow empty string, numbers, dots, and commas
     if (value !== "" && !/^[0-9.,]*$/.test(value)) return;
-    
+
     // Prevent multiple dots/commas
     const dotsAndCommas = value.match(/[.,]/g);
     if (dotsAndCommas && dotsAndCommas.length > 1) return;
@@ -322,7 +322,7 @@ export default function VegzettekElegedettsege() {
             )}
 
             {/* Action Buttons */}
-            <Stack direction="row" spacing={2} sx={{ mb: 3, ml: 2 }}>
+            <Stack direction="row" spacing={2} sx={{ position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px 8px 8px 8px", mb: 3, ml: 2 }}>
               <ExportDOMTableToExcel
                 tableId=".MuiTable-root"
                 fileName="export_adatok"
@@ -469,8 +469,8 @@ export default function VegzettekElegedettsege() {
                                 size="small"
                                 disabled={!selectedSchool}
                                 value={String(
-                                    tableData[row.key]?.[startYear]?.munkaadok_elegedettsege ?? ""
-                                  ).replace(".", ",") || 0}
+                                  tableData[row.key]?.[startYear]?.munkaadok_elegedettsege ?? ""
+                                ).replace(".", ",") || 0}
                                 onChange={(e) =>
                                   handleDataChange(
                                     row.key,
@@ -494,7 +494,7 @@ export default function VegzettekElegedettsege() {
                                     : "#fff",
                                 }}
                                 placeholder=""
-                               placeholder="0"/>
+                                placeholder="0" />
                             </TableCell>
                           );
                         })}
