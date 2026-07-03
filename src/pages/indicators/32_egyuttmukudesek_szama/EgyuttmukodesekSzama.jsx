@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import React, { useState, useMemo, useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectSelectedSchool } from "../../../store/slices/authSlice";
@@ -512,7 +513,7 @@ export default function EgyuttmukodesekSzama() {
         ...extraSx,
       }}
     >
-      {label}
+      {formatHuNum(label)}
     </TableCell>
   );
 
@@ -708,7 +709,7 @@ export default function EgyuttmukodesekSzama() {
                           fontWeight: 500,
                         }}
                       >
-                        {name}
+                        {formatHuNum(name)}
                       </TableCell>
                       {schoolYears.map((year, i) => (
                         <React.Fragment key={`t1-${name}-${year}`}>
@@ -989,7 +990,7 @@ export default function EgyuttmukodesekSzama() {
                           fontWeight: 500,
                         }}
                       >
-                        {name}
+                        {formatHuNum(name)}
                       </TableCell>
                       {schoolYears.map((year, i) => (
                         <React.Fragment key={`t2-${name}-${year}`}>

@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import React, { useState, useEffect, useMemo, Fragment } from "react";
 import { useSelector } from "react-redux";
 import { selectSelectedSchool } from "../../../store/slices/authSlice";
@@ -581,7 +582,7 @@ export default function Vizsgaeredmenyek() {
                             boxShadow: "2px 0 5px -2px rgba(0,0,0,0.1)",
                           }}
                         >
-                          {categoryData.title}
+                          {formatHuNum(categoryData.title)}
                         </TableCell>
                         {schoolYears.map((year) => (
                           <TableCell
@@ -612,7 +613,7 @@ export default function Vizsgaeredmenyek() {
                               boxShadow: "2px 0 5px -2px rgba(0,0,0,0.1)",
                             }}
                           >
-                            {subject.label}
+                            {formatHuNum(subject.label)}
                           </TableCell>
 
                           {schoolYears.map((yearStr, yearIdx) => {

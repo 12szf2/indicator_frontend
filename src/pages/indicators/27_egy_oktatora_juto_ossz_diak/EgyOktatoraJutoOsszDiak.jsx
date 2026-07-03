@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import {
@@ -388,7 +389,7 @@ export default function EgyOktatoraJutoOsszDiak() {
                           color: "#b45309",
                         }}
                       >
-                        {yearlyData[year]?.arany ?? ""}
+                        {formatHuNum(yearlyData[year]?.arany ?? "")}
                       </TableCell>
                     ))}
                   </TableRow>

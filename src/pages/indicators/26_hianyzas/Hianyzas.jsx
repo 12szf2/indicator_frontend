@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import PageLoadingOverlay from "../../../components/shared/PageLoadingOverlay";
 import React, { useState, useMemo, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -580,10 +581,10 @@ export default function Hianyzas() {
                             textAlign: "center",
                           }}
                         >
-                          {instType}
+                          {formatHuNum(instType)}
                         </TableCell>
                       )}
-                      <TableCell sx={cellSx}>{jogv}</TableCell>
+                      <TableCell sx={cellSx}>{formatHuNum(jogv)}</TableCell>
 
                       {/* Semester 1 inputs */}
                       <TableCell sx={cellSx}>
@@ -638,7 +639,7 @@ export default function Hianyzas() {
                          placeholder="0"/>
                       </TableCell>
                       <TableCell sx={{ ...cellSx, textAlign: "right" }}>
-                        {calculateRowTotal(instType, jogv, "felev1")}
+                        {formatHuNum(calculateRowTotal(instType, jogv, "felev1"))}
                       </TableCell>
                       <TableCell
                         sx={{
@@ -647,7 +648,7 @@ export default function Hianyzas() {
                           fontWeight: "bold",
                         }}
                       >
-                        {calculateAverage(instType, jogv, "felev1")}
+                        {formatHuNum(calculateAverage(instType, jogv, "felev1"))}
                       </TableCell>
 
                       {/* Semester 2 inputs */}
@@ -703,7 +704,7 @@ export default function Hianyzas() {
                          placeholder="0"/>
                       </TableCell>
                       <TableCell sx={{ ...cellSx, textAlign: "right" }}>
-                        {calculateRowTotal(instType, jogv, "felev2")}
+                        {formatHuNum(calculateRowTotal(instType, jogv, "felev2"))}
                       </TableCell>
                       <TableCell
                         sx={{
@@ -712,7 +713,7 @@ export default function Hianyzas() {
                           fontWeight: "bold",
                         }}
                       >
-                        {calculateAverage(instType, jogv, "felev2")}
+                        {formatHuNum(calculateAverage(instType, jogv, "felev2"))}
                       </TableCell>
                     </TableRow>
                   ));
@@ -740,7 +741,7 @@ export default function Hianyzas() {
                         backgroundColor: "#fff3e0",
                       }}
                     >
-                      {calculateGrandTotal("felev1", "igazolt")}
+                      {formatHuNum(calculateGrandTotal("felev1", "igazolt"))}
                     </TableCell>
                     <TableCell
                       sx={{
@@ -750,7 +751,7 @@ export default function Hianyzas() {
                         backgroundColor: "#fff3e0",
                       }}
                     >
-                      {calculateGrandTotal("felev1", "igazolatlan")}
+                      {formatHuNum(calculateGrandTotal("felev1", "igazolatlan"))}
                     </TableCell>
                     <TableCell
                       sx={{
@@ -760,7 +761,7 @@ export default function Hianyzas() {
                         backgroundColor: "#fff3e0",
                       }}
                     >
-                      {calculateGrandTotal("felev1", "osszes")}
+                      {formatHuNum(calculateGrandTotal("felev1", "osszes"))}
                     </TableCell>
                     <TableCell
                       sx={{
@@ -770,7 +771,7 @@ export default function Hianyzas() {
                         backgroundColor: "#fff3e0",
                       }}
                     >
-                      {calculateGrandTotal("felev1", "atlag")}
+                      {formatHuNum(calculateGrandTotal("felev1", "atlag"))}
                     </TableCell>
                     <TableCell
                       sx={{
@@ -780,7 +781,7 @@ export default function Hianyzas() {
                         backgroundColor: "#fff3e0",
                       }}
                     >
-                      {calculateGrandTotal("felev2", "igazolt")}
+                      {formatHuNum(calculateGrandTotal("felev2", "igazolt"))}
                     </TableCell>
                     <TableCell
                       sx={{
@@ -790,7 +791,7 @@ export default function Hianyzas() {
                         backgroundColor: "#fff3e0",
                       }}
                     >
-                      {calculateGrandTotal("felev2", "igazolatlan")}
+                      {formatHuNum(calculateGrandTotal("felev2", "igazolatlan"))}
                     </TableCell>
                     <TableCell
                       sx={{
@@ -800,7 +801,7 @@ export default function Hianyzas() {
                         backgroundColor: "#fff3e0",
                       }}
                     >
-                      {calculateGrandTotal("felev2", "osszes")}
+                      {formatHuNum(calculateGrandTotal("felev2", "osszes"))}
                     </TableCell>
                     <TableCell
                       sx={{
@@ -810,7 +811,7 @@ export default function Hianyzas() {
                         backgroundColor: "#fff3e0",
                       }}
                     >
-                      {calculateGrandTotal("felev2", "atlag")}
+                      {formatHuNum(calculateGrandTotal("felev2", "atlag"))}
                     </TableCell>
                   </TableRow>
                 )}

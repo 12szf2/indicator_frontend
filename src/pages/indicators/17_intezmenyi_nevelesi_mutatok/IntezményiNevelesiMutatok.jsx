@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import PageLoadingOverlay from "../../../components/shared/PageLoadingOverlay";
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -712,7 +713,7 @@ export default function IntezményiNevelesiMutatok() {
                                   : "#d32f2f",
                             }}
                           >
-                            {category.name}
+                            {formatHuNum(category.name)}
                           </TableCell>
                         ))}
                       </TableRow>
@@ -758,7 +759,7 @@ export default function IntezményiNevelesiMutatok() {
                           <TableCell
                             sx={{ textAlign: "center", color: "#666" }}
                           >
-                            {className}
+                            {formatHuNum(className)}
                           </TableCell>
                           <TableCell align="center">
                             <ZeroHidingTextField

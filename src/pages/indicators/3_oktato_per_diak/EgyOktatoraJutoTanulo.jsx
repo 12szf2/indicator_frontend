@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import { useState, useEffect, useMemo } from "react";
 import {
   Box,
@@ -429,13 +430,13 @@ export default function EgyOktatoraJutoTanulo() {
                           align="center"
                           sx={{ backgroundColor: "#e8f5e840" }}
                         >
-                          {stats.totalTanulok}
+                          {formatHuNum(stats.totalTanulok)}
                         </TableCell>
                         <TableCell
                           align="center"
                           sx={{ backgroundColor: "#f0f8ff40" }}
                         >
-                          {stats.totalOktatok}
+                          {formatHuNum(stats.totalOktatok)}
                         </TableCell>
                         <TableCell
                           align="center"
@@ -445,9 +446,9 @@ export default function EgyOktatoraJutoTanulo() {
                             color: "primary.main",
                           }}
                         >
-                          {stats.atlagArany}
+                          {formatHuNum(stats.atlagArany)}
                         </TableCell>
-                        <TableCell align="center">{stats.count}</TableCell>
+                        <TableCell align="center">{formatHuNum(stats.count)}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
@@ -668,7 +669,7 @@ export default function EgyOktatoraJutoTanulo() {
                                           color: "primary.main",
                                         }}
                                       >
-                                        {data.oktato_per_tanulo_arany}
+                                        {formatHuNum(data.oktato_per_tanulo_arany)}
                                       </TableCell>
                                       <TableCell align="center">
                                         <IconButton

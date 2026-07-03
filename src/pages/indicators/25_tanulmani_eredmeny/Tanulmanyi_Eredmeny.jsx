@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import PageLoadingOverlay from "../../../components/shared/PageLoadingOverlay";
 import React, { useState, useMemo, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -440,10 +441,10 @@ export default function TanulmanyiEredmeny() {
                         borderRight: "2px solid #e0e0e0",
                       }}
                     >
-                      {instType}
+                      {formatHuNum(instType)}
                     </TableCell>
                   )}
-                  <TableCell sx={cellSx}>{jogv}</TableCell>
+                  <TableCell sx={cellSx}>{formatHuNum(jogv)}</TableCell>
 
                   {/* Semester 1 inputs */}
                   <TableCell sx={cellSx}>
@@ -603,7 +604,7 @@ export default function TanulmanyiEredmeny() {
                     backgroundColor: "#ffcdd240",
                   }}
                 >
-                  {calculateGrandTotal(yearStr, "felev1", "kituno")}
+                  {formatHuNum(calculateGrandTotal(yearStr, "felev1", "kituno"))}
                 </TableCell>
                 <TableCell
                   sx={{
@@ -613,7 +614,7 @@ export default function TanulmanyiEredmeny() {
                     backgroundColor: "#ffcdd240",
                   }}
                 >
-                  {calculateGrandTotal(yearStr, "felev1", "bukott")}
+                  {formatHuNum(calculateGrandTotal(yearStr, "felev1", "bukott"))}
                 </TableCell>
                 <TableCell
                   sx={{
@@ -623,7 +624,7 @@ export default function TanulmanyiEredmeny() {
                     backgroundColor: "#ffcdd240",
                   }}
                 >
-                  {calculateGrandTotal(yearStr, "felev2", "kituno")}
+                  {formatHuNum(calculateGrandTotal(yearStr, "felev2", "kituno"))}
                 </TableCell>
                 <TableCell
                   sx={{
@@ -633,7 +634,7 @@ export default function TanulmanyiEredmeny() {
                     backgroundColor: "#ffcdd240",
                   }}
                 >
-                  {calculateGrandTotal(yearStr, "felev2", "bukott")}
+                  {formatHuNum(calculateGrandTotal(yearStr, "felev2", "bukott"))}
                 </TableCell>
               </TableRow>
             )}

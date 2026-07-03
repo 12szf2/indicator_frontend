@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import PageLoadingOverlay from "../../../components/shared/PageLoadingOverlay";
 import { useState, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
@@ -798,7 +799,7 @@ export default function HatanyosHelyzetuTanulokAranya() {
                                       border: "1px solid #ffcdd2",
                                     }}
                                   >
-                                    {year.replace("/", "/")}
+                                    {formatHuNum(year.replace("/", "/"))}
                                   </TableCell>
                                 ))}
                                 {/* Daytime percentages headers */}
@@ -815,7 +816,7 @@ export default function HatanyosHelyzetuTanulokAranya() {
                                       border: "1px solid #f0f8ff",
                                     }}
                                   >
-                                    {year.replace("/", "/")}
+                                    {formatHuNum(year.replace("/", "/"))}
                                   </TableCell>
                                 ))}
                                 {/* Adult education percentages headers */}
@@ -832,7 +833,7 @@ export default function HatanyosHelyzetuTanulokAranya() {
                                       border: "1px solid #f3e5f5",
                                     }}
                                   >
-                                    {year.replace("/", "/")}
+                                    {formatHuNum(year.replace("/", "/"))}
                                   </TableCell>
                                 ))}
                               </TableRow>
@@ -1006,7 +1007,7 @@ export default function HatanyosHelyzetuTanulokAranya() {
                                       border: "1px solid #ffcdd2",
                                     }}
                                   >
-                                    {year.replace("/", "/")}
+                                    {formatHuNum(year.replace("/", "/"))}
                                   </TableCell>
                                 ))}
                                 {/* Daytime count headers */}
@@ -1023,7 +1024,7 @@ export default function HatanyosHelyzetuTanulokAranya() {
                                       border: "1px solid #f0f8ff",
                                     }}
                                   >
-                                    {year.replace("/", "/")}
+                                    {formatHuNum(year.replace("/", "/"))}
                                   </TableCell>
                                 ))}
                                 {/* Adult education count headers */}
@@ -1040,7 +1041,7 @@ export default function HatanyosHelyzetuTanulokAranya() {
                                       border: "1px solid #f3e5f5",
                                     }}
                                   >
-                                    {year.replace("/", "/")}
+                                    {formatHuNum(year.replace("/", "/"))}
                                   </TableCell>
                                 ))}
                               </TableRow>
@@ -1249,7 +1250,7 @@ export default function HatanyosHelyzetuTanulokAranya() {
                                       border: "1px solid #ffcdd2",
                                     }}
                                   >
-                                    {year.replace("/", "/")}
+                                    {formatHuNum(year.replace("/", "/"))}
                                   </TableCell>
                                 ))}
                                 {/* Daytime total headers */}
@@ -1266,7 +1267,7 @@ export default function HatanyosHelyzetuTanulokAranya() {
                                       border: "1px solid #f0f8ff",
                                     }}
                                   >
-                                    {year.replace("/", "/")}
+                                    {formatHuNum(year.replace("/", "/"))}
                                   </TableCell>
                                 ))}
                                 {/* Adult education total headers */}
@@ -1283,7 +1284,7 @@ export default function HatanyosHelyzetuTanulokAranya() {
                                       border: "1px solid #f3e5f5",
                                     }}
                                   >
-                                    {year.replace("/", "/")}
+                                    {formatHuNum(year.replace("/", "/"))}
                                   </TableCell>
                                 ))}
                               </TableRow>
@@ -1309,7 +1310,7 @@ export default function HatanyosHelyzetuTanulokAranya() {
                                         border: "1px solid #ffcdd2",
                                       }}
                                     >
-                                      {getCombinedTotalStudents(year)}
+                                      {formatHuNum(getCombinedTotalStudents(year))}
                                     </Typography>
                                   </TableCell>
                                 ))}
@@ -1456,7 +1457,7 @@ export default function HatanyosHelyzetuTanulokAranya() {
                                       border: "1px solid #f3e5f5",
                                     }}
                                   >
-                                    {year.replace("/", "/")}
+                                    {formatHuNum(year.replace("/", "/"))}
                                   </TableCell>
                                 ))}
                                 {schoolYears.map((year) => (
@@ -1472,7 +1473,7 @@ export default function HatanyosHelyzetuTanulokAranya() {
                                       border: "1px solid #f0f8ff",
                                     }}
                                   >
-                                    {year.replace("/", "/")}
+                                    {formatHuNum(year.replace("/", "/"))}
                                   </TableCell>
                                 ))}
                                 {schoolYears.map((year) => (
@@ -1488,7 +1489,7 @@ export default function HatanyosHelyzetuTanulokAranya() {
                                       border: "1px solid #f3e5f5",
                                     }}
                                   >
-                                    {year.replace("/", "/")}
+                                    {formatHuNum(year.replace("/", "/"))}
                                   </TableCell>
                                 ))}
                               </TableRow>
@@ -1658,7 +1659,7 @@ export default function HatanyosHelyzetuTanulokAranya() {
                                       border: "1px solid #f3e5f5",
                                     }}
                                   >
-                                    {year.replace("/", "/")}
+                                    {formatHuNum(year.replace("/", "/"))}
                                   </TableCell>
                                 ))}
                                 {schoolYears.map((year) => (
@@ -1674,7 +1675,7 @@ export default function HatanyosHelyzetuTanulokAranya() {
                                       border: "1px solid #f0f8ff",
                                     }}
                                   >
-                                    {year.replace("/", "/")}
+                                    {formatHuNum(year.replace("/", "/"))}
                                   </TableCell>
                                 ))}
                                 {schoolYears.map((year) => (
@@ -1690,7 +1691,7 @@ export default function HatanyosHelyzetuTanulokAranya() {
                                       border: "1px solid #f3e5f5",
                                     }}
                                   >
-                                    {year.replace("/", "/")}
+                                    {formatHuNum(year.replace("/", "/"))}
                                   </TableCell>
                                 ))}
                               </TableRow>
@@ -2106,7 +2107,7 @@ export default function HatanyosHelyzetuTanulokAranya() {
                                         }}
                                       >
                                         <TableCell sx={{ fontWeight: "bold" }}>
-                                          {yearData.year}
+                                          {formatHuNum(yearData.year)}
                                         </TableCell>
                                         <TableCell align="center">
                                           <Chip
@@ -2145,13 +2146,13 @@ export default function HatanyosHelyzetuTanulokAranya() {
                                           align="center"
                                           sx={{ fontWeight: "bold" }}
                                         >
-                                          {yearData.hhStudents}
+                                          {formatHuNum(yearData.hhStudents)}
                                         </TableCell>
                                         <TableCell
                                           align="center"
                                           sx={{ fontWeight: "bold" }}
                                         >
-                                          {yearData.totalStudents}
+                                          {formatHuNum(yearData.totalStudents)}
                                         </TableCell>
                                       </TableRow>
                                     ))}

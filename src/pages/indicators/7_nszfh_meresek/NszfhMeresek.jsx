@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useSelector } from "react-redux";
 import {
@@ -924,7 +925,7 @@ export default function NszfhMeresek() {
                                     width: "200px",
                                   }}
                                 >
-                                  {rowInfo.label}
+                                  {formatHuNum(rowInfo.label)}
                                 </TableCell>
                               )}
                               {/* Band label column */}
@@ -941,7 +942,7 @@ export default function NszfhMeresek() {
                                   width: "120px",
                                 }}
                               >
-                                {band.label}
+                                {formatHuNum(band.label)}
                               </TableCell>
 
                               {/* Data columns (%) */}

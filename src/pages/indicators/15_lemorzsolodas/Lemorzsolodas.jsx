@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import React, { useState, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { selectSelectedSchool } from "../../../store/slices/authSlice";
@@ -506,7 +507,7 @@ export default function Lemorzsolodas() {
                       const okt = calculateTotal(allSzakmaIds, year, "oktober");
                       return (
                         <TableCell key={`perc-osszesen-${year}`} align="center">
-                          {calculatePercentage(lem, okt)}
+                          {formatHuNum(calculatePercentage(lem, okt))}
                         </TableCell>
                       );
                     })}
@@ -516,7 +517,7 @@ export default function Lemorzsolodas() {
                       const year = yearStr.split("/")[0];
                       return (
                         <TableCell key={`lem-osszesen-${year}`} align="center">
-                          {calculateTotal(allSzakmaIds, year, "lemorzsolodo")}
+                          {formatHuNum(calculateTotal(allSzakmaIds, year, "lemorzsolodo"))}
                         </TableCell>
                       );
                     })}
@@ -526,7 +527,7 @@ export default function Lemorzsolodas() {
                       const year = yearStr.split("/")[0];
                       return (
                         <TableCell key={`okt-osszesen-${year}`} align="center">
-                          {calculateTotal(allSzakmaIds, year, "oktober")}
+                          {formatHuNum(calculateTotal(allSzakmaIds, year, "oktober"))}
                         </TableCell>
                       );
                     })}
@@ -569,7 +570,7 @@ export default function Lemorzsolodas() {
                                 key={`perc-cat-${cat.szakirany_id}-${year}`}
                                 align="center"
                               >
-                                {calculatePercentage(lem, okt)}
+                                {formatHuNum(calculatePercentage(lem, okt))}
                               </TableCell>
                             );
                           })}
@@ -582,11 +583,11 @@ export default function Lemorzsolodas() {
                                 key={`lem-cat-${cat.szakirany_id}-${year}`}
                                 align="center"
                               >
-                                {calculateTotal(
+                                {formatHuNum(calculateTotal(
                                   catSzakmaIds,
                                   year,
                                   "lemorzsolodo",
-                                )}
+                                ))}
                               </TableCell>
                             );
                           })}
@@ -599,7 +600,7 @@ export default function Lemorzsolodas() {
                                 key={`okt-cat-${cat.szakirany_id}-${year}`}
                                 align="center"
                               >
-                                {calculateTotal(catSzakmaIds, year, "oktober")}
+                                {formatHuNum(calculateTotal(catSzakmaIds, year, "oktober"))}
                               </TableCell>
                             );
                           })}
@@ -615,7 +616,7 @@ export default function Lemorzsolodas() {
                               szakmánként
                             </TableCell>
                             <TableCell sx={{ fontWeight: "bold", pl: 4 }}>
-                              {szakma.szakma_nev}
+                              {formatHuNum(szakma.szakma_nev)}
                             </TableCell>
 
                             {/* % */}
@@ -635,7 +636,7 @@ export default function Lemorzsolodas() {
                                   key={`perc-szakma-${szakma.szakma_id}-${year}`}
                                   align="center"
                                 >
-                                  {calculatePercentage(lem, okt)}
+                                  {formatHuNum(calculatePercentage(lem, okt))}
                                 </TableCell>
                               );
                             })}

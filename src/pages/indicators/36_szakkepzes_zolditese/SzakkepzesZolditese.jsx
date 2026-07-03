@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import React, { useState, useMemo, useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectSelectedSchool } from "../../../store/slices/authSlice";
@@ -547,7 +548,7 @@ export default function SzakkepzesZolditese() {
                             verticalAlign: "top",
                           }}
                         >
-                          {category}
+                          {formatHuNum(category)}
                         </TableCell>
                       )}
                       <TableCell
@@ -561,7 +562,7 @@ export default function SzakkepzesZolditese() {
                           width: "30%",
                         }}
                       >
-                        {name}
+                        {formatHuNum(name)}
                       </TableCell>
                       {schoolYears.map((year, i) => {
                         const rawVal =

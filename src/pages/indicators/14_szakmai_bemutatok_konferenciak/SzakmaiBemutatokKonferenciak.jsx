@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import PageLoadingOverlay from "../../../components/shared/PageLoadingOverlay";
 import React, { useState, useEffect } from "react";
 import {
@@ -404,7 +405,7 @@ export default function SzakmaiBemutatokKonferenciak() {
                             backgroundColor: "#f0f8ff",
                           }}
                         >
-                          {yearLabel}
+                          {formatHuNum(yearLabel)}
                         </TableCell>
                       ))}
                     </TableRow>
@@ -420,7 +421,7 @@ export default function SzakmaiBemutatokKonferenciak() {
                           verticalAlign: "middle",
                         }}
                       >
-                        {categoryData.title}
+                        {formatHuNum(categoryData.title)}
                       </TableCell>
                       <TableCell
                         sx={{

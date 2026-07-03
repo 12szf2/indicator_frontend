@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import { useState, useEffect, useMemo, useRef } from "react";
 import { useSelector } from "react-redux";
 import {
@@ -855,7 +856,7 @@ export default function OktatokEgyebTev() {
                                         textAlign: "center",
                                       }}
                                     >
-                                      {categoryLabel}
+                                      {formatHuNum(categoryLabel)}
                                     </TableCell>
                                   </TableRow>,
                                   // Field rows for this category
@@ -872,7 +873,7 @@ export default function OktatokEgyebTev() {
                                         key={`${categoryKey}-${fieldKey}`}
                                       >
                                         <TableCell sx={{ pl: 3 }}>
-                                          {fieldLabel}
+                                          {formatHuNum(fieldLabel)}
                                         </TableCell>
                                         {schoolYears.map((year) => (
                                           <TableCell key={year} align="center">
@@ -931,10 +932,10 @@ export default function OktatokEgyebTev() {
                                           backgroundColor: "grey.100",
                                         }}
                                       >
-                                        {calculateCategoryTotal(
+                                        {formatHuNum(calculateCategoryTotal(
                                           data[year],
                                           categoryKey,
-                                        )}
+                                        ))}
                                       </TableCell>
                                     ))}
                                   </TableRow>,
@@ -943,7 +944,7 @@ export default function OktatokEgyebTev() {
                                 // Handle direct fields
                                 return (
                                   <TableRow key={categoryKey}>
-                                    <TableCell>{categoryLabel}</TableCell>
+                                    <TableCell>{formatHuNum(categoryLabel)}</TableCell>
                                     {schoolYears.map((year) => (
                                       <TableCell key={year} align="center">
                                         <ZeroHidingTextField
@@ -1004,7 +1005,7 @@ export default function OktatokEgyebTev() {
                                   color: "primary.contrastText",
                                 }}
                               >
-                                {calculateYearTotal(data[year])}
+                                {formatHuNum(calculateYearTotal(data[year]))}
                               </TableCell>
                             ))}
                           </TableRow>

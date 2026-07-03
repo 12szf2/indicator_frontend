@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import React, { useState, useMemo, useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectSelectedSchool } from "../../../store/slices/authSlice";
@@ -759,7 +760,7 @@ export default function Palyazatok() {
                           fontSize: "0.8rem",
                         }}
                       >
-                        {m.label}
+                        {formatHuNum(m.label)}
                       </TableCell>
                     ))}
                   </React.Fragment>
@@ -910,7 +911,7 @@ export default function Palyazatok() {
                               : "1px solid #e0e0e0",
                         }}
                       >
-                        {isMoney ? formatMoney(val) : val}
+                        {formatHuNum(isMoney ? formatMoney(val) : val)}
                       </TableCell>
                     );
                   }),

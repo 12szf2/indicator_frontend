@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import React, { useState, useMemo, useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectSelectedSchool } from "../../../store/slices/authSlice";
@@ -678,7 +679,7 @@ export default function SzakmaiEredmenyek() {
                           lineHeight: 1.2,
                         }}
                       >
-                        {placement.label}
+                        {formatHuNum(placement.label)}
                       </TableCell>
                     ))}
                   </React.Fragment>
@@ -717,7 +718,7 @@ export default function SzakmaiEredmenyek() {
                                 : "1px solid #e0e0e0",
                           }}
                         >
-                          {totals[startYear]?.[placement.key] || 0}
+                          {formatHuNum(totals[startYear]?.[placement.key] || 0)}
                         </TableCell>
                       ))}
                     </React.Fragment>
@@ -862,9 +863,9 @@ export default function SzakmaiEredmenyek() {
                       align="center"
                       sx={{ fontWeight: "bold" }}
                     >
-                      {totals[parseInt(year.split("/")[0], 10)]?.[
+                      {formatHuNum(totals[parseInt(year.split("/")[0], 10)]?.[
                         placement.key
-                      ] || 0}
+                      ] || 0)}
                     </TableCell>
                   )),
                 )}

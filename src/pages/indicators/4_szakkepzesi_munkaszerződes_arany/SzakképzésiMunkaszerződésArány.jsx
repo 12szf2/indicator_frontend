@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import PageLoadingOverlay from "../../../components/shared/PageLoadingOverlay";
 import { useState, useEffect, useMemo } from "react";
 import {
@@ -1351,7 +1352,7 @@ export default function SzakképzésiMunkaszerződésArány() {
                           verticalAlign: "middle",
                         }}
                       >
-                        {/* Empty header cell */}
+                        {formatHuNum(/* Empty header cell */)}
                       </TableCell>
                       <TableCell
                         rowSpan={2}
@@ -1363,7 +1364,7 @@ export default function SzakképzésiMunkaszerződésArány() {
                           verticalAlign: "middle",
                         }}
                       >
-                        {/* Empty header cell */}
+                        {formatHuNum(/* Empty header cell */)}
                       </TableCell>
                       {schoolYears.map((year) => (
                         <TableCell
@@ -1463,7 +1464,7 @@ export default function SzakképzésiMunkaszerződésArány() {
                                     verticalAlign: "middle",
                                   }}
                                 >
-                                  {institution.category}
+                                  {formatHuNum(institution.category)}
                                 </TableCell>
                               )}
                               <TableCell
@@ -1475,7 +1476,7 @@ export default function SzakképzésiMunkaszerződésArány() {
                                   paddingLeft,
                                 }}
                               >
-                                {itemObj.displayName}
+                                {formatHuNum(itemObj.displayName)}
                               </TableCell>
                               {schoolYears.map((year) => (
                                 <TableCell key={year} align="center">

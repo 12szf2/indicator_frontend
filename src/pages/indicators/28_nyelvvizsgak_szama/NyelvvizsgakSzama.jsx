@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import React, { useState, useMemo, useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectSelectedSchool } from "../../../store/slices/authSlice";
@@ -663,7 +664,7 @@ export default function NyelvvizsgakSzama() {
                           backgroundColor: "#e8f5e8",
                         }}
                       >
-                        {calculateRowTotal(cls, year)}
+                        {formatHuNum(calculateRowTotal(cls, year))}
                       </TableCell>
                     </TableRow>
                   ))}
@@ -688,7 +689,7 @@ export default function NyelvvizsgakSzama() {
                         fontSize: "1.1rem",
                       }}
                     >
-                      {calculateYearGrandTotal(year)}
+                      {formatHuNum(calculateYearGrandTotal(year))}
                     </TableCell>
                   </TableRow>
                 </TableBody>

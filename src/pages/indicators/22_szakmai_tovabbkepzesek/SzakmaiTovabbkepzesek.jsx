@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import PageLoadingOverlay from "../../../components/shared/PageLoadingOverlay";
 import React, { useState, useMemo, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -483,7 +484,7 @@ export default function SzakmaiTovabbkepzesek() {
                         colSpan={3}
                         sx={{ ...cellSx, fontWeight: "bold" }}
                       >
-                        {rowItem.label}
+                        {formatHuNum(rowItem.label)}
                       </TableCell>
                     )}
 
@@ -542,17 +543,17 @@ export default function SzakmaiTovabbkepzesek() {
                             IKK által szervezett
                           </Box>
                         </TableCell>
-                        <TableCell sx={cellSx}>{rowItem.label}</TableCell>
+                        <TableCell sx={cellSx}>{formatHuNum(rowItem.label)}</TableCell>
                       </>
                     )}
 
                     {idx > 1 && idx <= 9 && (
-                      <TableCell sx={cellSx}>{rowItem.label}</TableCell>
+                      <TableCell sx={cellSx}>{formatHuNum(rowItem.label)}</TableCell>
                     )}
 
                     {idx >= 10 && (
                       <TableCell colSpan={2} sx={cellSx}>
-                        {rowItem.label}
+                        {formatHuNum(rowItem.label)}
                       </TableCell>
                     )}
 
@@ -595,7 +596,7 @@ export default function SzakmaiTovabbkepzesek() {
                       align="center"
                       sx={{ ...cellSx, fontWeight: "bold" }}
                     >
-                      {calcData[year]?.resztvevokOsszesen || 0}
+                      {formatHuNum(calcData[year]?.resztvevokOsszesen || 0)}
                     </TableCell>
                   );
                 })}
@@ -645,7 +646,7 @@ export default function SzakmaiTovabbkepzesek() {
                       align="center"
                       sx={{ ...cellSx, fontWeight: "bold", color: "#d32f2f" }}
                     >
-                      {calcData[year]?.aranyText || "0%"}
+                      {formatHuNum(calcData[year]?.aranyText || "0%")}
                     </TableCell>
                   );
                 })}
@@ -695,7 +696,7 @@ export default function SzakmaiTovabbkepzesek() {
                       align="center"
                       sx={{ ...cellSx, fontWeight: "bold" }}
                     >
-                      {calcData[year]?.fKoltsegText || 0}
+                      {formatHuNum(calcData[year]?.fKoltsegText || 0)}
                     </TableCell>
                   );
                 })}
