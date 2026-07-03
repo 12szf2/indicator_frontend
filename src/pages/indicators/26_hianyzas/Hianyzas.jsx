@@ -186,7 +186,7 @@ export default function Hianyzas() {
       }));
       setIsModified(false);
     }
-  }, [hianyzasData, isHianyzasFetching, selectedYear, formattedYear]);
+  }, [hianyzasData ? JSON.stringify(hianyzasData) : null, isHianyzasFetching, selectedYear, formattedYear]);
 
   const institutionTypes = useMemo(() => {
     if (!schoolsData || !Array.isArray(schoolsData)) return [];

@@ -110,7 +110,7 @@ export default function HistoryDialog({ open, onClose, alapadatokId, tableName, 
         'Elegedettseg', 'ElegedettsegMeres', 'IntezményiElismeresek', 'Palyazatok', 
         'Szervezetfejlesztes', 'DualisKepzohelyek', 'InnovaciosTevekenysegek', 'SzakkepzesZolditese', 
         'DigitalisKompetencia', 'TanulmanyiEredmeny', 'PalyaOrientacio', 'EgyuttmukodesekSzama', 
-        'NyelvvizsgakSzama', 'HHesHHHNevelesuTanulok', 'SajatosNevelesuTanulok'
+        'NyelvvizsgakSzama', 'HHesHHHNevelesuTanulok', 'SajatosNevelesuTanulok', 'Hianyzas'
       ]));
 
       // Optionally refetch history list
