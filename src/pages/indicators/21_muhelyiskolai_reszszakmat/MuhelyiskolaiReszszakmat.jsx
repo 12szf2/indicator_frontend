@@ -406,16 +406,7 @@ export default function MuhelyiskolaiReszszakmat() {
               <Stack
                 direction="row"
                 spacing={2}
-                sx={{
-                  mt: 3,
-                  mb: 3,
-                  position: "sticky",
-                  top: 2,
-                  zIndex: 10,
-                  backgroundColor: "white",
-                  padding: 1,
-                  borderRadius: 1,
-                }}
+                sx={{ position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px", mt: 3, mb: 2 }}
               >
                 <ExportDOMTableToExcel
                   tableId=".MuiTable-root"
@@ -432,10 +423,9 @@ export default function MuhelyiskolaiReszszakmat() {
                   </Button>
                   <Button
                     variant="outlined"
-                    color="primary"
+                    color="info"
                     onClick={() => setHistoryOpen(true)}
                     startIcon={<HistoryIcon />}
-                    sx={{ ml: 2 }}
                   >
                     Előzmények
                   </Button>
