@@ -95,7 +95,7 @@ export default function TanulmanyiEredmeny() {
       if (Array.isArray(tanulmanyiData)) {
         tanulmanyiData.forEach((item) => {
           const {
-            intezmeny_tipus,
+            intezmeny_tipusa: intezmeny_tipus,
             jogviszony,
             felev,
             kituno,
@@ -140,7 +140,7 @@ export default function TanulmanyiEredmeny() {
       setOriginalData(JSON.parse(JSON.stringify(formattedData)));
       setIsModified(false);
     }
-  }, [tanulmanyiData, isTanulmanyiFetching]);
+  }, [tanulmanyiData ? JSON.stringify(tanulmanyiData) : null, isTanulmanyiFetching]);
 
   const handleReset = () => {
     setTableData(JSON.parse(JSON.stringify(originalData)));
