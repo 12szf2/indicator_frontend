@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import PageLoadingOverlay from "../../../components/shared/PageLoadingOverlay";
 import { useState, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
@@ -727,7 +728,7 @@ export default function DobbantoProgramAránya() {
                                   fontSize: "1.1rem",
                                 }}
                               >
-                                {dobbantoData.total_students[year] || 0}
+                                {formatHuNum(dobbantoData.total_students[year] || 0)}
                               </TableCell>
                             ))}
                           </TableRow>

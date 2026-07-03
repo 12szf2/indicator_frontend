@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import React, { useState, useMemo, useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectSelectedSchool } from "../../../store/slices/authSlice";
@@ -605,7 +606,7 @@ export default function IntézményiElismeresek() {
                           align="center"
                           sx={{ fontWeight: "bold" }}
                         >
-                          {sum}
+                          {formatHuNum(sum)}
                         </TableCell>
                       );
                     })}
@@ -854,7 +855,7 @@ export default function IntézményiElismeresek() {
                           align="center"
                           sx={{ fontWeight: "bold" }}
                         >
-                          {sum}
+                          {formatHuNum(sum)}
                         </TableCell>
                       );
                     })}
@@ -869,7 +870,7 @@ export default function IntézményiElismeresek() {
                         "&:hover": { backgroundColor: "#f5f5f5" },
                       }}
                     >
-                      <TableCell sx={{ pl: 3 }}>{kat.label}</TableCell>
+                      <TableCell sx={{ pl: 3 }}>{formatHuNum(kat.label)}</TableCell>
                       <TableCell
                         align="center"
                         sx={{ backgroundColor: "#f0f8ff" }}

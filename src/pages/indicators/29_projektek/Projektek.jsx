@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import React, { useState, useMemo, useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectSelectedSchool } from "../../../store/slices/authSlice";
@@ -483,7 +484,7 @@ export default function Projektek() {
                               backgroundColor: "#f5f5f5",
                             }}
                           >
-                            {row.agazat_szakma}
+                            {formatHuNum(row.agazat_szakma)}
                           </TableCell>
                           <TableCell sx={{ borderBottom: "1px solid #f5f5f5" }}>
                             <ZeroHidingTextField
@@ -634,7 +635,7 @@ export default function Projektek() {
                           fontSize: "1.1rem",
                         }}
                       >
-                        {calculateTotal(year)}
+                        {formatHuNum(calculateTotal(year))}
                       </TableCell>
                       <TableCell
                         sx={{ borderBottom: "2px solid #e0e0e0" }}

@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import React, { useState, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import {
@@ -595,7 +596,7 @@ export default function ElhelyezkedesimMutato() {
                               zIndex: 1,
                             }}
                           >
-                            {cat.titleCol1}
+                            {formatHuNum(cat.titleCol1)}
                           </TableCell>
                           <TableCell
                             sx={{
@@ -610,7 +611,7 @@ export default function ElhelyezkedesimMutato() {
                               zIndex: 1,
                             }}
                           >
-                            {cat.titleCol2}
+                            {formatHuNum(cat.titleCol2)}
                           </TableCell>
 
                           {/* Arány */}
@@ -630,7 +631,7 @@ export default function ElhelyezkedesimMutato() {
                                   : "1px solid #e0e0e0",
                               }}
                             >
-                              {calculateTotalArany(cat, year)}
+                              {formatHuNum(calculateTotalArany(cat, year))}
                             </TableCell>
                           ))}
 
@@ -650,7 +651,7 @@ export default function ElhelyezkedesimMutato() {
                                   : "1px solid #e0e0e0",
                               }}
                             >
-                              {calculateTotalElhelyezkedok(cat, year)}
+                              {formatHuNum(calculateTotalElhelyezkedok(cat, year))}
                             </TableCell>
                           ))}
 
@@ -670,7 +671,7 @@ export default function ElhelyezkedesimMutato() {
                                   : "1px solid #e0e0e0",
                               }}
                             >
-                              {calculateTotalVegzettek(cat, year)}
+                              {formatHuNum(calculateTotalVegzettek(cat, year))}
                             </TableCell>
                           ))}
                         </TableRow>
@@ -699,7 +700,7 @@ export default function ElhelyezkedesimMutato() {
                                   zIndex: 1,
                                 }}
                               >
-                                {programMap[key].szakma_nev}
+                                {formatHuNum(programMap[key].szakma_nev)}
                               </TableCell>
 
                               {/* Arány */}
@@ -714,7 +715,7 @@ export default function ElhelyezkedesimMutato() {
                                         : "1px solid #e0e0e0",
                                   }}
                                 >
-                                  {calculateRowArany(key, year)}
+                                  {formatHuNum(calculateRowArany(key, year))}
                                 </TableCell>
                               ))}
 

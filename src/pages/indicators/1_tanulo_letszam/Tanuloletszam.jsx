@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import React, { useState, useMemo, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 import {
@@ -1249,7 +1250,7 @@ export default function TanuloLetszam() {
                                 borderBottom: "2px solid #2e7d32",
                               }}
                             >
-                              {change === "∞" ? "∞" : change}
+                              {formatHuNum(change === "∞" ? "∞" : change)}
                             </TableCell>
                           );
                         })}
@@ -1279,7 +1280,7 @@ export default function TanuloLetszam() {
                                 borderBottom: "2px solid #2e7d32",
                               }}
                             >
-                              {change === "∞" ? "∞" : change}
+                              {formatHuNum(change === "∞" ? "∞" : change)}
                             </TableCell>
                           );
                         })}
@@ -1309,7 +1310,7 @@ export default function TanuloLetszam() {
                                 borderBottom: "2px solid #2e7d32",
                               }}
                             >
-                              {change === "∞" ? "∞" : change}
+                              {formatHuNum(change === "∞" ? "∞" : change)}
                             </TableCell>
                           );
                         })}
@@ -1334,7 +1335,7 @@ export default function TanuloLetszam() {
                                     zIndex: 2,
                                   }}
                                 >
-                                  {category.category}
+                                  {formatHuNum(category.category)}
                                 </TableCell>
                                 {/* Empty cells for years */}
                                 {Array(evszamok.length * 3)
@@ -1362,7 +1363,7 @@ export default function TanuloLetszam() {
                                     zIndex: 1,
                                   }}
                                 >
-                                  {category.subcategory}
+                                  {formatHuNum(category.subcategory)}
                                 </TableCell>
                                 {/* Calculate totals for subcategory */}
                                 {evszamok.map((schoolYear) => {
@@ -1476,7 +1477,7 @@ export default function TanuloLetszam() {
                                           : "inherit",
                                     }}
                                   >
-                                    {subType}
+                                    {formatHuNum(subType)}
                                   </TableCell>
 
                                   {/* Összesen (tanulói + felnőttképzési) */}
@@ -1502,7 +1503,7 @@ export default function TanuloLetszam() {
                                             : "text.disabled",
                                         }}
                                       >
-                                        {total}
+                                        {formatHuNum(total)}
                                       </TableCell>
                                     );
                                   })}
@@ -1603,7 +1604,7 @@ export default function TanuloLetszam() {
                                         zIndex: 2,
                                       }}
                                     >
-                                      {category.category}
+                                      {formatHuNum(category.category)}
                                     </TableCell>
                                     {/* Empty cells for years */}
                                     {Array(evszamok.length * 3)
@@ -1663,7 +1664,7 @@ export default function TanuloLetszam() {
                                           : "none",
                                     }}
                                   >
-                                    {subType}
+                                    {formatHuNum(subType)}
                                   </TableCell>
 
                                   {/* Összesen (tanulói + felnőttképzési) */}
@@ -1723,7 +1724,7 @@ export default function TanuloLetszam() {
                                               : "none",
                                         }}
                                       >
-                                        {total}
+                                        {formatHuNum(total)}
                                       </TableCell>
                                     );
                                   })}

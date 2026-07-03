@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import PageLoadingOverlay from "../../../components/shared/PageLoadingOverlay";
 import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { useSelector } from "react-redux";
@@ -1040,7 +1041,7 @@ const FelvettekSzama = () => {
                             zIndex: 2,
                           }}
                         >
-                          {category.category}
+                          {formatHuNum(category.category)}
                         </TableCell>
                         {/* Empty cells for years */}
                         {Array(evszamok.length * 4)
@@ -1075,7 +1076,7 @@ const FelvettekSzama = () => {
                                 : "inherit",
                             }}
                           >
-                            {subType}
+                            {formatHuNum(subType)}
                           </TableCell>
 
                           {/* Jelentkezések és felvettek aránya - calculated automatically */}
@@ -1129,7 +1130,7 @@ const FelvettekSzama = () => {
                                     : "text.disabled",
                                 }}
                               >
-                                {displayValue}
+                                {formatHuNum(displayValue)}
                               </TableCell>
                             );
                           })}

@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { useSelector } from "react-redux";
 import {
@@ -550,7 +551,7 @@ export default function SzakmaiVizsga() {
                             zIndex: 1,
                           }}
                         >
-                          {row.label}
+                          {formatHuNum(row.label)}
                         </TableCell>
                         {evszamok.map((year, i) => {
                           const startYear = parseInt(year.split("/")[0], 10);

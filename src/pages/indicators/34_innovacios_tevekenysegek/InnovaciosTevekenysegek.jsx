@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import React, { useState, useMemo, useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectSelectedSchool } from "../../../store/slices/authSlice";
@@ -497,7 +498,7 @@ export default function InnovaciosTevekenysegek() {
                           fontWeight: 500,
                         }}
                       >
-                        {name}
+                        {formatHuNum(name)}
                       </TableCell>
                       {schoolYears.map((year, i) => {
                         const rawVal =

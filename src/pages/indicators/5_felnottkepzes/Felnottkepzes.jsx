@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import {
@@ -283,7 +284,7 @@ export default function Felnottkepzes() {
                                   fontWeight: "medium",
                                 }}
                               >
-                                {felnottkepzesiJogviszony[year]}
+                                {formatHuNum(felnottkepzesiJogviszony[year])}
                               </TableCell>
                             ))}
                           </TableRow>
@@ -327,7 +328,7 @@ export default function Felnottkepzes() {
                                   fontWeight: "medium",
                                 }}
                               >
-                                {szakmaiOktatás[year]}
+                                {formatHuNum(szakmaiOktatás[year])}
                               </TableCell>
                             ))}
                           </TableRow>

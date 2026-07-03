@@ -1,3 +1,4 @@
+import { formatHuNum } from "../../../utils/formatters";
 import PageLoadingOverlay from "../../../components/shared/PageLoadingOverlay";
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { useSelector } from "react-redux";
@@ -429,7 +430,7 @@ export default function ElegedettsegMeresEredmenyei() {
                           minWidth: 120,
                         }}
                       >
-                        {yearStr}
+                        {formatHuNum(yearStr)}
                       </TableCell>
                     ))}
                   </TableRow>
@@ -448,7 +449,7 @@ export default function ElegedettsegMeresEredmenyei() {
                           fontWeight: "bold",
                         }}
                       >
-                        {category.label}
+                        {formatHuNum(category.label)}
                       </TableCell>
                       {evszamok.map((yearStr, i) => {
                         const year = parseInt(yearStr.split("/")[0], 10);
@@ -529,7 +530,7 @@ export default function ElegedettsegMeresEredmenyei() {
                             fontSize: "1.1rem",
                           }}
                         >
-                          {(calculateTotalAverages[year] || "0.0") + "%"}
+                          {formatHuNum((calculateTotalAverages[year] || "0.0") + "%")}
                         </TableCell>
                       );
                     })}
