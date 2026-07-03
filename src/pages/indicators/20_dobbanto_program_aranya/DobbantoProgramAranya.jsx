@@ -71,7 +71,7 @@ export default function DobbantoProgramAránya() {
   const existingDobbantoData = useMemo(() => {
     return dobbantoQueries.flatMap((query) => query.data || []);
   }, [
-    dobbantoQueries.map((q) => q.data?.length).join(","),
+    dobbantoQueries.map((q) => JSON.stringify(q.data)).join(","),
     selectedSchool?.id,
   ]);
 
@@ -176,10 +176,15 @@ export default function DobbantoProgramAránya() {
 
   // Load existing dobbanto data from API when available
   useEffect(() => {
-    if (existingDobbantoData && existingDobbantoData.length > 0) {
+    if (existingDobbantoData) {
       console.log("Loading existing dobbanto data:", existingDobbantoData);
 
       const dobbantoStudentsData = {};
+
+      // Initialize all years to 0 first
+      schoolYears.forEach((year) => {
+        dobbantoStudentsData[year] = "0";
+      });
 
       // Process existing dobbanto data
       existingDobbantoData.forEach((record) => {
@@ -206,9 +211,11 @@ export default function DobbantoProgramAránya() {
         };
       });
 
+      setIsModified(false);
+
       console.log("Loaded dobbanto students data:", dobbantoStudentsData);
     }
-  }, [existingDobbantoData.length, selectedSchool?.id]);
+  }, [existingDobbantoData, selectedSchool?.id]);
 
   // Handle data changes - csak a dobbanto_students módosítható
   const handleDataChange = (section, year, value) => {
@@ -457,10 +464,9 @@ export default function DobbantoProgramAránya() {
                     </Button>
                     <Button
                       variant="outlined"
-                      color="primary"
+                      color="info"
                       onClick={() => setHistoryOpen(true)}
                       startIcon={<HistoryIcon />}
-                      sx={{ ml: 2 }}
                     >
                       Előzmények
                     </Button>

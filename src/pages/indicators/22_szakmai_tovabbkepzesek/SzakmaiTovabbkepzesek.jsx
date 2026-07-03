@@ -31,6 +31,8 @@ import LockStatusIndicator from "../../../components/LockStatusIndicator";
 import LockedTableWrapper from "../../../components/LockedTableWrapper";
 import ExportToExcel from "../../../components/ExportToExcel";
 import ZeroHidingTextField from "../../../components/shared/ZeroHidingTextField";
+import HistoryDialog from "../../../components/HistoryDialog";
+import HistoryIcon from "@mui/icons-material/History";
 
 const evszamok = generateSchoolYears();
 
@@ -47,6 +49,7 @@ export default function SzakmaiTovabbkepzesek() {
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
   const [isSaving, setIsSaving] = useState(false);
+  const [historyOpen, setHistoryOpen] = useState(false);
 
   const [upsertSzakmaiTovabbkepzesek] =
     useUpsertSzakmaiTovabbkepzesekMutation();
@@ -398,28 +401,34 @@ export default function SzakmaiTovabbkepzesek() {
         <Stack
           direction="row"
           spacing={2}
-          justifyContent="flex-end"
           sx={{ position: "sticky", top: 0, zIndex: 20, backgroundColor: "rgba(255, 255, 255, 0.98)", backdropFilter: "blur(8px)", width: "100%", p: 2, borderBottom: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 20px -2px rgba(0,0,0,0.05)", borderRadius: "8px 8px 8px 8px", mb: 2 }}
           flexWrap="wrap"
         >
           <LockedTableWrapper tableName="szakmai_tovabbkepzes">
             <Button
-              variant="outlined"
-              color="warning"
-              startIcon={<RestartAltIcon />}
-              onClick={handleReset}
-              disabled={!isModified || isSaving || !selectedSchool}
-            >
-              Visszállítás
-            </Button>
-            <Button
               variant="contained"
-              color="primary"
               startIcon={<SaveIcon />}
               onClick={handleSaveData}
               disabled={!isModified || isSaving || !selectedSchool}
             >
               Mentés
+            </Button>
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={() => setHistoryOpen(true)}
+              startIcon={<HistoryIcon />}
+              sx={{ ml: 2, mr: 2 }}
+            >
+              Előzmények
+            </Button>
+            <Button
+              variant="outlined"
+              startIcon={<RestartAltIcon />}
+              onClick={handleReset}
+              disabled={!isModified || isSaving || !selectedSchool}
+            >
+              Visszaállítás
             </Button>
           </LockedTableWrapper>
           <ExportToExcel
@@ -695,6 +704,18 @@ export default function SzakmaiTovabbkepzesek() {
           </Table>
         </TableContainer>
       </Box>
+
+      <HistoryDialog
+        open={historyOpen}
+        onClose={() => setHistoryOpen(false)}
+        alapadatokId={selectedSchool?.id}
+        tableName="szakmai_tovabbkepzes"
+        onRollbackSuccess={() => {
+          setSnackbarMessage("Sikeres visszaállítás az előzményekből!");
+          setSnackbarSeverity("success");
+          setSnackbarOpen(true);
+        }}
+      />
 
       <Snackbar
         open={snackbarOpen}

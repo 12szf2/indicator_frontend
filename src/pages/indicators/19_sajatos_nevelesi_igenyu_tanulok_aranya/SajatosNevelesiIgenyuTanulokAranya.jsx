@@ -178,6 +178,8 @@ export default function SajatosNevelesiIgenyuTanulokAranya() {
 
       setSniData(enrichedData);
       setOriginalSniData(JSON.parse(JSON.stringify(enrichedData))); // Deep clone for reset
+      setIsModified(false);
+      setModifiedIds(new Set());
     }
   }, [apiSniData, tanuloLetszamData]);
 
@@ -813,7 +815,7 @@ export default function SajatosNevelesiIgenyuTanulokAranya() {
                   <DialogContent>
                     <Grid container spacing={2} sx={{ mt: 1 }}>
                       <Grid item xs={12} md={6}>
-                        <FormControl fullWidth>
+                        <FormControl fullWidth error={sniData?.some((item) => item.tanev_kezdete === addDialog.newRecord.tanev_kezdete)}>
                           <InputLabel>Tanév kezdete</InputLabel>
                           <Select
                             value={addDialog.newRecord.tanev_kezdete}
@@ -835,6 +837,11 @@ export default function SajatosNevelesiIgenyuTanulokAranya() {
                               );
                             })}
                           </Select>
+                          {sniData?.some((item) => item.tanev_kezdete === addDialog.newRecord.tanev_kezdete) && (
+                            <Typography variant="caption" color="error" sx={{ mt: 1 }}>
+                              Ehhez a tanévhez már létezik adat!
+                            </Typography>
+                          )}
                         </FormControl>
                       </Grid>
 
@@ -908,7 +915,8 @@ export default function SajatosNevelesiIgenyuTanulokAranya() {
                       disabled={
                         selectedSchool?.id === undefined ||
                         !addDialog.newRecord.tanev_kezdete ||
-                        isAdding
+                        isAdding ||
+                        sniData?.some((item) => item.tanev_kezdete === addDialog.newRecord.tanev_kezdete)
                       }
                     >
                       {isAdding ? "Hozzáadás..." : "Hozzáadás"}
@@ -951,9 +959,11 @@ export default function SajatosNevelesiIgenyuTanulokAranya() {
           alapadatokId={selectedSchool?.id}
           tableName="sajatosNevelesuTanulok"
           onRollbackSuccess={() => {
-            setSnackbarMessage("Sikeres visszaállítás az előzményekből!");
-            setSnackbarSeverity("success");
-            setSnackbarOpen(true);
+            setNotification({
+              open: true,
+              message: "Sikeres visszaállítás az előzményekből!",
+              severity: "success",
+            });
           }}
         />
       </PageWrapper>
