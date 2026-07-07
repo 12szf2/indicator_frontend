@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import {
   Box,
-  VStack,
-  Heading,
-  Text,
+  Stack,
+  Typography,
   Button
-} from '@chakra-ui/react'
+} from '@mui/material'
 import { CustomSheetUploader } from './CustomSheetUploader'
 
 export const CustomSheetUploaderExample: React.FC = () => {
@@ -55,15 +54,15 @@ export const CustomSheetUploaderExample: React.FC = () => {
   }
 
   return (
-    <Box maxW="4xl" mx="auto" p={6}>
-      <VStack gap={6} align="stretch">
+    <Box sx={{ maxWidth: 'md', mx: 'auto', p: 3 }}>
+      <Stack direction="column" spacing={3}>
         <Box textAlign="center">
-          <Heading as="h1" size="xl" mb={2}>
+          <Typography variant="h4" component="h1" gutterBottom>
             Excel File Importer
-          </Heading>
-          <Text color="gray.600" fontSize="lg">
+          </Typography>
+          <Typography color="textSecondary" variant="subtitle1">
             Upload your Excel files and import data directly to the database
-          </Text>
+          </Typography>
         </Box>
 
         <CustomSheetUploader
@@ -78,60 +77,62 @@ export const CustomSheetUploaderExample: React.FC = () => {
 
         {/* Status Display */}
         {importStatus === 'processing' && (
-          <Box p={4} bg="blue.50" borderRadius="md" border="1px solid" borderColor="blue.200">
-            <Text fontWeight="bold" color="blue.700">Processing...</Text>
-            <Text color="blue.600">
+          <Box sx={{ p: 2, bgcolor: 'info.light', borderRadius: 1, border: '1px solid', borderColor: 'info.main' }}>
+            <Typography fontWeight="bold" color="info.dark">Processing...</Typography>
+            <Typography color="info.dark">
               Your data is being imported to the database. Please wait.
-            </Text>
+            </Typography>
           </Box>
         )}
 
         {importStatus === 'success' && importedData && (
-          <Box p={4} bg="green.50" borderRadius="md" border="1px solid" borderColor="green.200">
-            <Text fontWeight="bold" color="green.700">Import Complete!</Text>
-            <Text color="green.600">
+          <Box sx={{ p: 2, bgcolor: 'success.light', borderRadius: 1, border: '1px solid', borderColor: 'success.main' }}>
+            <Typography fontWeight="bold" color="success.dark">Import Complete!</Typography>
+            <Typography color="success.dark">
               Successfully imported {importedData.length} records to the database.
-            </Text>
+            </Typography>
           </Box>
         )}
 
         {importStatus === 'error' && (
-          <Box p={4} bg="red.50" borderRadius="md" border="1px solid" borderColor="red.200">
-            <Text fontWeight="bold" color="red.700">Import Failed</Text>
-            <Text color="red.600">
+          <Box sx={{ p: 2, bgcolor: 'error.light', borderRadius: 1, border: '1px solid', borderColor: 'error.main' }}>
+            <Typography fontWeight="bold" color="error.dark">Import Failed</Typography>
+            <Typography color="error.dark">
               There was an error importing your data. Please check the file and try again.
-            </Text>
+            </Typography>
           </Box>
         )}
 
         {/* Data Summary */}
         {importedData && (
           <Box
-            border="1px solid"
-            borderColor="gray.200"
-            borderRadius="md"
-            p={4}
-            bg="gray.50"
+            sx={{
+              border: '1px solid',
+              borderColor: 'grey.200',
+              borderRadius: 1,
+              p: 2,
+              bgcolor: 'grey.50'
+            }}
           >
-            <Heading as="h3" size="md" mb={3}>
+            <Typography variant="h6" component="h3" gutterBottom>
               Import Summary
-            </Heading>
-            <VStack gap={2} align="start">
-              <Text><strong>Total Records:</strong> {importedData.length}</Text>
-              <Text><strong>Columns:</strong> {importedData.length > 0 ? Object.keys(importedData[0]).length : 0}</Text>
-              <Text><strong>Import Time:</strong> {new Date().toLocaleString()}</Text>
+            </Typography>
+            <Stack direction="column" spacing={1} alignItems="flex-start">
+              <Typography><strong>Total Records:</strong> {importedData.length}</Typography>
+              <Typography><strong>Columns:</strong> {importedData.length > 0 ? Object.keys(importedData[0]).length : 0}</Typography>
+              <Typography><strong>Import Time:</strong> {new Date().toLocaleString()}</Typography>
               {importedData.length > 0 && (
                 <Box>
-                  <Text><strong>Column Names:</strong></Text>
-                  <Text fontSize="sm" color="gray.600">
+                  <Typography><strong>Column Names:</strong></Typography>
+                  <Typography variant="body2" color="textSecondary">
                     {Object.keys(importedData[0]).join(', ')}
-                  </Text>
+                  </Typography>
                 </Box>
               )}
-            </VStack>
+            </Stack>
           </Box>
         )}
-      </VStack>
+      </Stack>
     </Box>
   )
 }

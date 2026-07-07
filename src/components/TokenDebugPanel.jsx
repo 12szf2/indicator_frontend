@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Button, Box, Text, VStack, Badge } from "@chakra-ui/react";
+import { Button, Box, Typography, Stack, Chip } from "@mui/material";
 import {
   selectAccessToken,
   selectRefreshToken,
@@ -70,85 +70,91 @@ const TokenDebugPanel = () => {
   if (!isAuthenticated) {
     return (
       <Box
-        p={4}
-        border="1px"
-        borderColor="red.300"
-        borderRadius="md"
-        bg="red.50"
+        sx={{
+          p: 2,
+          border: "1px solid",
+          borderColor: "error.light",
+          borderRadius: 1,
+          bgcolor: "error.50"
+        }}
       >
-        <Text color="red.600">Not authenticated - Token debug unavailable</Text>
+        <Typography color="error.main">Not authenticated - Token debug unavailable</Typography>
       </Box>
     );
   }
 
   return (
     <Box
-      p={4}
-      border="1px"
-      borderColor="blue.300"
-      borderRadius="md"
-      bg="blue.50"
+      sx={{
+        p: 2,
+        border: "1px solid",
+        borderColor: "info.light",
+        borderRadius: 1,
+        bgcolor: "info.50"
+      }}
     >
-      <VStack align="stretch" spacing={3}>
-        <Text fontSize="lg" fontWeight="bold" color="blue.800">
+      <Stack direction="column" spacing={1.5}>
+        <Typography variant="h6" fontWeight="bold" color="info.dark">
           Token Debug Panel
-        </Text>
+        </Typography>
 
         <Box>
-          <Text fontWeight="semibold">Status:</Text>
-          <Badge colorScheme={isTokenExpired ? "red" : "green"}>
-            {isTokenExpired ? "Expired" : "Valid"}
-          </Badge>
+          <Typography fontWeight="fontWeightMedium" component="span">Status: </Typography>
+          <Chip 
+            size="small" 
+            color={isTokenExpired ? "error" : "success"}
+            label={isTokenExpired ? "Expired" : "Valid"} 
+          />
           {isTokenExpiringSoon && !isTokenExpired && (
-            <Badge colorScheme="yellow" ml={2}>
-              Expiring Soon
-            </Badge>
+            <Chip size="small" color="warning" label="Expiring Soon" sx={{ ml: 1 }} />
           )}
         </Box>
 
         {accessTokenInfo && (
           <Box>
-            <Text fontWeight="semibold">Access Token:</Text>
-            <Text fontSize="sm">Expires: {accessTokenInfo.expires}</Text>
-            <Text fontSize="sm">
+            <Typography fontWeight="fontWeightMedium">Access Token:</Typography>
+            <Typography variant="body2">Expires: {accessTokenInfo.expires}</Typography>
+            <Typography variant="body2">
               Time left: {accessTokenInfo.minutesLeft} minutes
-            </Text>
+            </Typography>
           </Box>
         )}
 
         {refreshTokenInfo && (
           <Box>
-            <Text fontWeight="semibold">Refresh Token:</Text>
-            <Text fontSize="sm">Expires: {refreshTokenInfo.expires}</Text>
-            <Text fontSize="sm">
+            <Typography fontWeight="fontWeightMedium">Refresh Token:</Typography>
+            <Typography variant="body2">Expires: {refreshTokenInfo.expires}</Typography>
+            <Typography variant="body2">
               Time left: {refreshTokenInfo.minutesLeft} minutes
-            </Text>
+            </Typography>
           </Box>
         )}
 
-        <VStack spacing={2}>
+        <Stack direction="column" spacing={1}>
           <Button
-            colorScheme="blue"
-            size="sm"
+            variant="contained"
+            color="primary"
+            size="small"
             onClick={handleManualRefresh}
-            isDisabled={!refreshToken}
+            disabled={!refreshToken}
           >
             Manual Refresh
           </Button>
           <Button
-            colorScheme="green"
-            size="sm"
+            variant="contained"
+            color="success"
+            size="small"
             onClick={handleCheckAndRefresh}
-            isDisabled={!refreshToken}
+            disabled={!refreshToken}
           >
             Check & Refresh
           </Button>
-        </VStack>
+        </Stack>
 
-        <Text fontSize="xs" color="gray.600">
+        <Typography variant="caption" color="textSecondary">
           Check browser console for detailed logs
-        </Text>
-      </VStack>
+        </Typography>
+      </Stack>
     </Box>
   );
 };

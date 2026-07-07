@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTokenValidation } from "../hooks/useTokenValidation";
-import {
-  Alert,
-  AlertIcon,
-  AlertTitle,
-  AlertDescription,
-  Box,
-} from "@chakra-ui/react";
+import { Alert, AlertTitle, Box } from "@mui/material";
 
 /**
  * TokenExpirationWarning - Component that shows warnings when token is about to expire
@@ -71,18 +65,17 @@ const TokenExpirationWarning = () => {
 
   return (
     <Box
-      position="fixed"
-      top="20px"
-      right="20px"
-      zIndex={9999}
-      maxWidth="400px"
+      sx={{
+        position: "fixed",
+        top: "20px",
+        right: "20px",
+        zIndex: 9999,
+        maxWidth: "400px"
+      }}
     >
-      <Alert status={warningLevel} variant="left-accent">
-        <AlertIcon />
-        <Box>
-          <AlertTitle>Session Expiring!</AlertTitle>
-          <AlertDescription>{warningMessage}</AlertDescription>
-        </Box>
+      <Alert severity={warningLevel}>
+        <AlertTitle>Session Expiring!</AlertTitle>
+        {warningMessage}
       </Alert>
     </Box>
   );

@@ -1,5 +1,4 @@
-import { Badge } from "@chakra-ui/react";
-import { Box } from "@mui/material";
+import { Box, Chip } from "@mui/material";
 
 const UserRoleBadge = ({ role, permissions }) => {
   const getDisplayRole = (role, permissions) => {
@@ -20,11 +19,11 @@ const UserRoleBadge = ({ role, permissions }) => {
   };
 
   const getRoleColor = (role, permissions) => {
-    if (permissions?.isSuperadmin) return "red";
-    if (permissions?.isAdmin) return "orange";
-    if (permissions?.isPrivileged) return "blue";
-    if (permissions?.isStandard) return "green";
-    return "gray";
+    if (permissions?.isSuperadmin) return "error";
+    if (permissions?.isAdmin) return "warning";
+    if (permissions?.isPrivileged) return "info";
+    if (permissions?.isStandard) return "success";
+    return "default";
   };
 
   const getRoleIcon = (permissions) => {
@@ -39,18 +38,20 @@ const UserRoleBadge = ({ role, permissions }) => {
 
   return (
     <Box display="inline-flex" alignItems="center">
-      <Badge
-        colorPalette={getRoleColor(role, permissions)}
-        variant="subtle"
-        fontSize="xs"
-        px={2}
-      >
-        {getRoleIcon(permissions)} {displayRole}
-      </Badge>
+      <Chip
+        color={getRoleColor(role, permissions)}
+        variant="outlined"
+        size="small"
+        label={`${getRoleIcon(permissions)} ${displayRole}`}
+      />
       {permissions?.isHSZC && (
-        <Badge ml={2} colorPalette="blue" variant="solid" fontSize="xs" px={2}>
-          HSZC
-        </Badge>
+        <Chip 
+          sx={{ ml: 1 }} 
+          color="info" 
+          variant="filled" 
+          size="small" 
+          label="HSZC" 
+        />
       )}
     </Box>
   );

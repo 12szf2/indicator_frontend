@@ -41,7 +41,7 @@ import {
   MdBugReport,
 } from "react-icons/md";
 
-import { useColorModeValue } from "./ui/color-mode";
+
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import React, { useEffect, useState, useMemo, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -56,7 +56,7 @@ import {
 import { FiChevronDown } from "react-icons/fi";
 import UserRoleBadge from "./UserRoleBadge";
 import SchoolSelector from "./SchoolSelector";
-import { toaster } from "./ui/toaster";
+import toast from "react-hot-toast";
 import {
   TextField,
   InputAdornment,
@@ -1218,10 +1218,8 @@ const MobileNav = ({ onOpen, ...rest }) => {
   useRecentPages(NavigationCategories);
 
   const handleEmergencyLogout = useCallback(() => {
-    toaster.create({
-      title: "Azonnali kijelentkezés",
-      description: "Helyi kijelentkezést hajt végre API hívás nélkül.",
-      status: "info",
+    toast("Azonnali kijelentkezés\nHelyi kijelentkezést hajt végre API hívás nélkül.", {
+      icon: 'ℹ️',
       duration: 2000,
     });
     dispatch(indicatorApi.util.resetApiState());
@@ -1241,29 +1239,21 @@ const MobileNav = ({ onOpen, ...rest }) => {
   }, [handleEmergencyLogout]);
 
   const handleLogout = async () => {
-    const loadingToast = toaster.create({
-      title: "Kijelentkezés...",
-      description: "Kérjük várjon, amíg a kijelentkezés folyamata befejeződik.",
-      status: "loading",
-      duration: null,
-    });
+    const loadingToast = toast.loading("Kijelentkezés...");
 
     try {
       const timeoutPromise = new Promise((_, reject) =>
         setTimeout(() => reject(new Error("Logout request timed out")), 3000),
       );
       await Promise.race([logoutMutation().unwrap(), timeoutPromise]);
-      toaster.update(loadingToast, {
-        title: "Sikeres kijelentkezés",
-        description: "A szerver kijelentkeztette Önt.",
-        status: "success",
+      toast.success("Sikeres kijelentkezés\nA szerver kijelentkeztette Önt.", {
+        id: loadingToast,
         duration: 2000,
       });
     } catch (error) {
-      toaster.update(loadingToast, {
-        title: "Helyi kijelentkezés",
-        description: "Szerver kapcsolat megszakadt, de a helyi kijelentkezés megtörtént.",
-        status: "warning",
+      toast("Helyi kijelentkezés\nSzerver kapcsolat megszakadt, de a helyi kijelentkezés megtörtént.", {
+        icon: '⚠️',
+        id: loadingToast,
         duration: 3000,
       });
     } finally {

@@ -7,13 +7,13 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-import { Provider as ChakraProvider } from "./components/ui/provider.jsx";
 import configureAppStore from "./store/configureStore.js";
 import "./store/api/oktatokEgyebTevSlice.js"; // Import to register the API slice
 import { setupListeners } from "@reduxjs/toolkit/query";
 import Router from "./router/router.jsx";
 import { AccessNotificationProvider } from "./contexts/AccessNotificationContext.jsx";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { Toaster } from "react-hot-toast";
 // Import Tailwind CSS LAST to give it highest priority
 import "./index.css";
 
@@ -56,16 +56,15 @@ setupListeners(store.dispatch);
 createRoot(document.getElementById("root")).render(
   <ThemeProvider theme={muiTheme}>
     <CssBaseline />
-    <ChakraProvider>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID || "your-google-client-id-here"}>
-            <AccessNotificationProvider>
-              <Router />
-            </AccessNotificationProvider>
-          </GoogleOAuthProvider>
-        </PersistGate>
-      </Provider>
-    </ChakraProvider>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID || "your-google-client-id-here"}>
+          <AccessNotificationProvider>
+            <Toaster position="bottom-right" />
+            <Router />
+          </AccessNotificationProvider>
+        </GoogleOAuthProvider>
+      </PersistGate>
+    </Provider>
   </ThemeProvider>
 );

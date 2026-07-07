@@ -45,7 +45,7 @@ import {
   useGetUsersQuery,
 } from "../store/api/apiSlice";
 import { selectUserPermissions } from "../store/slices/authSlice";
-import { toaster } from "../components/ui/toaster";
+import toast from "react-hot-toast";
 
 // Log level colors
 const LOG_LEVEL_COLORS = {
@@ -195,10 +195,7 @@ export default function Logs() {
     try {
       await deleteLogsMutation(deleteFilters).unwrap();
 
-      toaster.create({
-        title: "Sikeres törlés",
-        description: "A naplók sikeresen törölve lettek.",
-        status: "success",
+      toast.success("Sikeres törlés\nA naplók sikeresen törölve lettek.", {
         duration: 3000,
       });
 
@@ -206,11 +203,7 @@ export default function Logs() {
       setDeleteFilters({ before: "", level: "", method: "" });
       refetch();
     } catch (error) {
-      toaster.create({
-        title: "Hiba a törlés során",
-        description:
-          error?.data?.message || "Váratlan hiba történt a naplók törlésekor.",
-        status: "error",
+      toast.error(`Hiba a törlés során\n${error?.data?.message || "Váratlan hiba történt a naplók törlésekor."}`, {
         duration: 5000,
       });
     }
